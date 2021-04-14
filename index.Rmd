@@ -476,6 +476,88 @@ Symptom Cluster Potential Symptom Severity Range:
   5. Vestibular Cluster: 0 - 24 (4 symptoms)
   6. Sleep Cluster: 0 - 30 (5 symptoms)
   
+
+To compare symptom cluster severity scores, each cluster was rescaled for the distribution of scores to fall between 0 to 1. Each cluster was rescaled individually and then grouped together into the same variable corresponding to post-injury test to compare with one-way ANOVAs. 
+
+**One Test Summary**
+
+  * Non-significant cluster comparisons: anxiety-mood/ocular-motor and cognitive/sleep
+  * All other PWC were significant 
+  * Headache-migraine cluster significantly higher than all other clusters
+  * Cognitive and sleep clusters tied for second highest rated clusters
+  * Anxiety-mood and ocular-motor rated the lowest 
+
+
+**Two Tests Summary**
+
+_Test One:_
+
+  * Non-significant cluster comparisons: cognitive/sleep 
+  * All other PWC were significant 
+  * Headache-migraine cluster significantly higher than all other clusters 
+  * Cognitive and sleep clusters tied for second highest rated clusters 
+  * Anxiety-mood and ocular-motor rated the lowest 
+
+_Test Two:_
+
+  * Non-significant cluster comparisons: anxiety-mood/ocular-motor, cognitive/sleep, anxiety-mood/vestibular, and ocular-motor/vestibular
+  * All other PWC were significant 
+  * Headache-migraine cluster significantly higher than all other clusters 
+
+**Three Tests Summary**
+
+_Test One:_
+
+  * Non-significant cluster comparisons: anxiety-mood/vestibular 
+  * All other PWC were significant 
+  * Headache-migraine cluster significantly higher than all other clusters
+
+_Test Two:_
+
+  * Non-significant cluster comparisons: anxiety-mood/ocular-motor, cognitive/sleep, anxiety-mood/vestibular, and ocular-motor/vestibular
+  * Headache-migraine cluster significantly higher than all other clusters 
+  
+_Test Three:_
+
+  * Non-significant cluster comparisons: cognitive/headache-migraine, anxiety-mood/ocular-motor, cognitive/sleep, headache-migraine/sleep, anxiety-mood/vestibular, and ocular-motor/vestibular
+  * Headache-migraine, cognitive, and sleep clusters significantly higher than other clusters 
+
+**Four Tests Summary**
+
+_Test One:_
+
+  * Non-significant cluster comparisons: anxiety-mood/ocular-motor, cognitive/sleep, cognitive/vestibular, and sleep/vestibular
+  * All other PWC were significant 
+  * Headache-migraine cluster significantly higher than all other clusters 
+  * Cognitive, vestibular, and sleep clusters not significantly different than each other and represent second set of clusters behind headache-migraine 
+  
+_Test Two:_
+
+  * Non-significant cluster comparisons: anxiety-mood/ocular-motor, cognitive/sleep, and ocular-motor/vestibular
+  * All other PWC were significant 
+  * Headache-migraine cluster significantly higher than all other clusters 
+
+_Test Three:_ 
+
+  * Non-significant cluster comparisons: cognitive/headache-migraine, anxiety-mood/ocular-motor, cognitive/sleep, anxiety-mood/vestibular, and ocular-motor/vestibular 
+  * All other PWC were significant 
+  * Headache-migraine cluster rated the highest but not significantly different than cognitive cluster 
+  * Cognitive cluster rated second highest but not significantly different than sleep cluster 
+_Test Four:_
+
+  * Non-significant cluster comparisons: anxiety-mood/cognitive, cognitive/headache-migraine, anxiety-mood/ocular-motor, cognitive/ocular-motor, anxiety-mood/sleep, cognitive/sleep, headache-migraine/sleep, ocular-motor/sleep, anxiety-mood/vestibular, ocular-motor/vestibular, and sleep/vestibular 
+  * Significant cluster comparisons: cognitive/vestibular, headache-migraine/vestibular, anxiety-mood/headache-migraine, ocular-motor/headache-migraine
+  * Probably most important comparison from this test was the significant difference between anxiety-mood and headache-migraine severity ratings 
+  
+
+
+
+
+
+
+
+  
+  
   
   Row {.tabset}
 -----------------------------------------------------------------------
