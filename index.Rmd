@@ -549,16 +549,6 @@ _Test Four:_
   * Significant cluster comparisons: cognitive/vestibular, headache-migraine/vestibular, anxiety-mood/headache-migraine, ocular-motor/headache-migraine
   * Probably most important comparison from this test was the significant difference between anxiety-mood and headache-migraine severity ratings 
   
-
-
-
-
-
-
-
-  
-  
-  
   Row {.tabset}
 -----------------------------------------------------------------------
 
@@ -1395,3 +1385,4 @@ cluster_four_tests_aov_pwc_4 <- cluster_four_tests_aov_pwc_4 %>%
 cluster_four_tests_aov_pwc_4 %>% 
   reactable()
 ```
+
