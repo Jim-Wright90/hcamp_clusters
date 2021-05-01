@@ -549,7 +549,7 @@ _Test Four:_
   * Significant cluster comparisons: cognitive/vestibular, headache-migraine/vestibular, anxiety-mood/headache-migraine, ocular-motor/headache-migraine
   * Probably most important comparison from this test was the significant difference between anxiety-mood and headache-migraine severity ratings 
   
-  Row {.tabset}
+Row {.tabset}
 -----------------------------------------------------------------------
 
 ### 1 Test Cluster Summary 
@@ -589,6 +589,11 @@ clusters_one_impact_test_scaled <- bind_cols(clusters_one_impact_test,
 clusters_one_impact_test_scaled <- clusters_one_impact_test_scaled %>% 
   select(-c(9:14))
 
+
+clusters_one_impact_test_scaled[sapply(clusters_one_impact_test_scaled, is.character)] <- lapply(clusters_one_impact_test_scaled[sapply(clusters_one_impact_test_scaled, is.character)], as.factor)
+
+str(clusters_one_impact_test_scaled)
+
 clusters_one_impact_test_scaled_long <- clusters_one_impact_test_scaled %>% 
     pivot_longer(
     cols = c(9:14),
@@ -597,6 +602,9 @@ clusters_one_impact_test_scaled_long <- clusters_one_impact_test_scaled %>%
     names_pattern = "(.*)_score_post_injury_1"
   ) 
 
+
+
+str(clusters_one_impact_test_scaled_long)
 ```
 
 ```{r, include=FALSE}
@@ -736,6 +744,11 @@ clusters_two_impact_test_1_scaled <- bind_cols(clusters_two_impact_test_1,
 clusters_two_impact_test_1_scaled <- clusters_two_impact_test_1_scaled %>% 
   select(-c(13:18))
 
+
+clusters_two_impact_test_1_scaled[sapply(clusters_two_impact_test_1_scaled, is.character)] <- lapply(clusters_two_impact_test_1_scaled[sapply(clusters_two_impact_test_1_scaled, is.character)], as.factor)
+
+str(clusters_two_impact_test_1_scaled)
+
 clusters_two_impact_test_1_long <- clusters_two_impact_test_1_scaled %>% 
     pivot_longer(
     cols = c(13:18),
@@ -762,6 +775,11 @@ clusters_two_impact_test_2_scaled <- bind_cols(clusters_two_impact_test_2,
 
 clusters_two_impact_test_2_scaled <- clusters_two_impact_test_2_scaled %>% 
   select(-c(13:18))
+
+
+clusters_two_impact_test_2_scaled[sapply(clusters_two_impact_test_2_scaled, is.character)] <- lapply(clusters_two_impact_test_2_scaled[sapply(clusters_two_impact_test_2_scaled, is.character)], as.factor)
+
+str(clusters_two_impact_test_2_scaled)
 
 clusters_two_impact_test_2_long <- clusters_two_impact_test_2_scaled %>% 
     pivot_longer(
@@ -886,6 +904,10 @@ clusters_three_impact_test_1_scaled <- bind_cols(clusters_three_impact_test_1,
 clusters_three_impact_test_1_scaled <- clusters_three_impact_test_1_scaled %>% 
   select(-c(17:22))
 
+clusters_three_impact_test_1_scaled[sapply(clusters_three_impact_test_1_scaled, is.character)] <- lapply(clusters_three_impact_test_1_scaled[sapply(clusters_three_impact_test_1_scaled, is.character)], as.factor)
+
+str(clusters_three_impact_test_1_scaled)
+
 clusters_three_impact_test_1_long <- clusters_three_impact_test_1_scaled %>% 
     pivot_longer(
     cols = c(17:22),
@@ -914,6 +936,10 @@ clusters_three_impact_test_2_scaled <- bind_cols(clusters_three_impact_test_2,
 clusters_three_impact_test_2_scaled <- clusters_three_impact_test_2_scaled %>% 
   select(-c(17:22))
 
+clusters_three_impact_test_2_scaled[sapply(clusters_three_impact_test_2_scaled, is.character)] <- lapply(clusters_three_impact_test_2_scaled[sapply(clusters_three_impact_test_2_scaled, is.character)], as.factor)
+
+str(clusters_three_impact_test_2_scaled)
+
 clusters_three_impact_test_2_long <- clusters_three_impact_test_2_scaled %>% 
     pivot_longer(
     cols = c(17:22),
@@ -941,6 +967,10 @@ clusters_three_impact_test_3_scaled <- bind_cols(clusters_three_impact_test_3,
 
 clusters_three_impact_test_3_scaled <- clusters_three_impact_test_3_scaled %>% 
   select(-c(17:22))
+
+clusters_three_impact_test_3_scaled[sapply(clusters_three_impact_test_3_scaled, is.character)] <- lapply(clusters_three_impact_test_3_scaled[sapply(clusters_three_impact_test_3_scaled, is.character)], as.factor)
+
+str(clusters_three_impact_test_3_scaled)
 
 clusters_three_impact_test_3_long <- clusters_three_impact_test_3_scaled %>% 
     pivot_longer(
@@ -1112,6 +1142,10 @@ clusters_four_impact_test_1_scaled <- bind_cols(clusters_four_impact_test_1,
 clusters_four_impact_test_1_scaled <- clusters_four_impact_test_1_scaled %>% 
   select(-c(21:26))
 
+clusters_four_impact_test_1_scaled[sapply(clusters_four_impact_test_1_scaled, is.character)] <- lapply(clusters_four_impact_test_1_scaled[sapply(clusters_four_impact_test_1_scaled, is.character)], as.factor)
+
+str(clusters_four_impact_test_1_scaled)
+
 clusters_four_impact_test_1_long <- clusters_four_impact_test_1_scaled %>% 
     pivot_longer(
     cols = c(21:26),
@@ -1140,6 +1174,10 @@ clusters_four_impact_test_2_scaled <- bind_cols(clusters_four_impact_test_2,
 clusters_four_impact_test_2_scaled <- clusters_four_impact_test_2_scaled %>% 
   select(-c(21:26))
 
+clusters_four_impact_test_2_scaled[sapply(clusters_four_impact_test_2_scaled, is.character)] <- lapply(clusters_four_impact_test_2_scaled[sapply(clusters_four_impact_test_2_scaled, is.character)], as.factor)
+
+str(clusters_four_impact_test_2_scaled)
+
 clusters_four_impact_test_2_long <- clusters_four_impact_test_2_scaled %>% 
     pivot_longer(
     cols = c(21:26),
@@ -1167,6 +1205,10 @@ clusters_four_impact_test_3_scaled <- bind_cols(clusters_four_impact_test_3,
 
 clusters_four_impact_test_3_scaled <- clusters_four_impact_test_3_scaled %>% 
   select(-c(21:26))
+
+clusters_four_impact_test_3_scaled[sapply(clusters_four_impact_test_3_scaled, is.character)] <- lapply(clusters_four_impact_test_3_scaled[sapply(clusters_four_impact_test_3_scaled, is.character)], as.factor)
+
+str(clusters_four_impact_test_3_scaled)
 
 clusters_four_impact_test_3_long <- clusters_four_impact_test_3_scaled %>% 
     pivot_longer(
@@ -1197,6 +1239,10 @@ clusters_four_impact_test_4_scaled <- bind_cols(clusters_four_impact_test_4,
 clusters_four_impact_test_4_scaled <- clusters_four_impact_test_4_scaled %>% 
   select(-c(21:26))
 
+clusters_four_impact_test_4_scaled[sapply(clusters_four_impact_test_4_scaled, is.character)] <- lapply(clusters_four_impact_test_4_scaled[sapply(clusters_four_impact_test_4_scaled, is.character)], as.factor)
+
+str(clusters_four_impact_test_4_scaled)
+
 clusters_four_impact_test_4_long <- clusters_four_impact_test_4_scaled %>% 
     pivot_longer(
     cols = c(21:26),
@@ -1214,6 +1260,8 @@ clusters_four_impact_test_join_2 <- left_join(clusters_four_impact_test_join_1,
 
 clusters_four_impact_test_complete <- left_join(clusters_four_impact_test_join_2,
                                                 clusters_four_impact_test_4_long)
+
+str(clusters_four_impact_test_complete)
 ```
 
 
@@ -1386,3 +1434,661 @@ cluster_four_tests_aov_pwc_4 %>%
   reactable()
 ```
 
+
+# Gender-Cluster Interaction  
+
+Sidebar {.sidebar}
+------------
+
+
+
+Row {.tabset}
+-----------------------------------------------------------------------
+
+### 1 Test Cluster Summary 
+
+```{r, include=FALSE}
+clusters_one_impact_test_scaled_long
+
+
+scaled_cluster_gender_tbl <- function(df, a, b, c) {
+  df %>% 
+    group_by({{a}}, {{b}}) %>% 
+    summarize(Mean = mean({{c}}),
+              SD = sd({{c}}),
+              Min = min({{c}}),
+              Max = max({{c}})) %>%  
+    mutate(Mean = as.numeric(Mean),
+           SD = as.numeric(SD),
+           Min = as.numeric(Min),
+           Max = as.numeric(Max)) %>% 
+    arrange(desc(Mean)) %>% 
+    mutate_if(is.numeric, round, 2) %>% 
+    reactable(
+      defaultColDef = colDef(align = "center"),
+      columns = list(
+        gender = colDef(name = "Gender"),
+        symptom_cluster = colDef(name = "Symptom Cluster"),
+        Mean = colDef(format = colFormat(separators = TRUE)),
+        SD = colDef(format = colFormat(separators = TRUE)),
+        Min = colDef(format = colFormat(separators = TRUE)),
+        Max = colDef(format = colFormat(separators = TRUE))
+      ),
+      pagination = TRUE,
+      striped = TRUE,
+      outlined = TRUE,
+      compact = TRUE,
+      highlight = TRUE,
+      bordered = TRUE,
+      searchable = TRUE
+    )    
+}
+
+scaled_cluster_gender_tbl(clusters_one_impact_test_scaled_long,
+                          gender,
+                          symptom_cluster,
+                          post_injury_1_score)
+
+```
+
+```{r, include=TRUE}
+scaled_cluster_gender_tbl(clusters_one_impact_test_scaled_long,
+                          gender,
+                          symptom_cluster,
+                          post_injury_1_score)
+```
+
+### 1 Test Cluster Boxplot 
+
+```{r, include=FALSE}
+
+ggplot(clusters_one_impact_test_scaled_long,
+  aes(symptom_cluster, post_injury_1_score, color = gender)) +
+  geom_boxplot() + 
+  scale_color_OkabeIto() + 
+  coord_flip() +
+  labs(x = "",
+       y = "Scaled Severity Score") +
+  theme(legend.title = element_blank())
+
+gender_cluster_bxp <- function(df, a, b, c) {
+ggplot(df,
+  aes({{a}}, {{b}}, color = {{c}})) +
+  geom_boxplot() + 
+  scale_color_OkabeIto() + 
+  coord_flip() +
+  labs(x = "",
+       y = "Scaled Severity Score") +
+  theme(legend.title = element_blank()) 
+}
+
+
+gender_cluster_bxp(clusters_one_impact_test_scaled_long,
+                   symptom_cluster,
+                   post_injury_1_score,
+                   gender)
+
+```
+
+```{r, include=TRUE, fig.width=10}
+gender_cluster_bxp(clusters_one_impact_test_scaled_long,
+                            symptom_cluster,
+                            post_injury_1_score,
+                            gender)
+```
+
+
+### 1 Test Cluster Two-Way ANOVA 
+
+```{r, include=FALSE}
+cluster_one_test_aov2 <- aov(post_injury_1_score ~ symptom_cluster * gender, 
+                            data = clusters_one_impact_test_scaled_long)
+
+
+library(car)
+
+summary(cluster_one_test_aov2)
+
+cluster_one_test_aov2
+
+Anova(cluster_one_test_aov2, type = "III")
+
+TukeyHSD(cluster_one_test_aov2)
+TukeyHSD(cluster_one_test_aov2, which = "gender")
+TukeyHSD(cluster_one_test_aov2, which = "symptom_cluster")
+
+
+library(broom)
+
+res_1 <- TukeyHSD(cluster_one_test_aov2)
+
+tidy(res_1) %>% 
+  reactable()
+
+a_1 <- Anova(cluster_one_test_aov2, type = "III")
+
+reactable(a_1)
+
+```
+
+```{r, include=TRUE}
+reactable(a_1)
+```
+
+### 1 Test Cluster PWC
+
+```{r, include=TRUE}
+tidy(res_1) %>% 
+  reactable()
+```
+
+
+Row {.tabset}
+-----------------------------------------------------------------------
+
+### 2 Tests Cluster Summary - Test 1
+
+```{r, include=FALSE}
+clusters_two_impact_test_complete[sapply(clusters_two_impact_test_complete, is.character)] <- lapply(clusters_two_impact_test_complete[sapply(clusters_two_impact_test_complete, is.character)], as.factor)
+
+str(clusters_two_impact_test_complete)
+```
+
+```{r, include=TRUE}
+scaled_cluster_gender_tbl(clusters_two_impact_test_complete,
+                          gender,
+                          symptom_cluster,
+                          post_injury_1_score)
+```
+
+### 2 Tests Cluster Boxplot - Test 1
+
+```{r, include=TRUE, fig.width=10}
+gender_cluster_bxp(clusters_two_impact_test_complete,
+                            symptom_cluster,
+                            post_injury_1_score,
+                            gender)
+```
+
+### 2 Tests Cluster Two-Way ANOVA - Test 1
+
+```{r, include=FALSE}
+cluster_two_tests_aov2_1 <- aov(post_injury_1_score ~ symptom_cluster * gender, 
+                            data = clusters_two_impact_test_complete)
+
+
+summary(cluster_two_tests_aov2_1)
+
+cluster_two_tests_aov2_1
+
+Anova(cluster_two_tests_aov2_1, type = "III")
+
+TukeyHSD(cluster_two_tests_aov2_1)
+
+
+res_2_1 <- TukeyHSD(cluster_two_tests_aov2_1)
+
+
+a_2_1 <- Anova(cluster_two_tests_aov2_1, type = "III")
+
+```
+
+
+```{r, include=TRUE}
+reactable(a_2_1)
+```
+
+### 2 Tests Cluster PWC - Test 1
+
+```{r, include=TRUE}
+tidy(res_2_1) %>% 
+  reactable()
+```
+
+
+### 2 Tests Cluster Summary - Test 2
+
+```{r, include=TRUE}
+scaled_cluster_gender_tbl(clusters_two_impact_test_complete,
+                          gender,
+                          symptom_cluster,
+                          post_injury_2_score)
+```
+
+### 2 Tests Cluster Boxplot - Test 2
+
+```{r, include=TRUE, fig.width=10}
+gender_cluster_bxp(clusters_two_impact_test_complete,
+                            symptom_cluster,
+                            post_injury_2_score,
+                            gender)
+```
+
+### 2 Tests Cluster Two-Way ANOVA - Test 2
+
+```{r, include=FALSE}
+cluster_two_tests_aov2_2 <- aov(post_injury_2_score ~ symptom_cluster * gender, 
+                            data = clusters_two_impact_test_complete)
+
+
+summary(cluster_two_tests_aov2_2)
+
+cluster_two_tests_aov2_2
+
+Anova(cluster_two_tests_aov2_2, type = "III")
+
+TukeyHSD(cluster_two_tests_aov2_2)
+
+
+res_2_2 <- TukeyHSD(cluster_two_tests_aov2_2)
+
+
+a_2_2 <- Anova(cluster_two_tests_aov2_2, type = "III")
+
+```
+
+
+```{r, include=TRUE}
+reactable(a_2_2)
+```
+
+### 2 Tests Cluster PWC - Test 1
+
+```{r, include=TRUE}
+tidy(res_2_2) %>% 
+  reactable()
+```
+
+
+Row {.tabset}
+-----------------------------------------------------------------------
+
+### 3 Tests Cluster Summary - Test 1
+
+```{r, include=FALSE}
+clusters_three_impact_test_complete[sapply(clusters_three_impact_test_complete, is.character)] <- lapply(clusters_three_impact_test_complete[sapply(clusters_three_impact_test_complete, is.character)], as.factor)
+
+str(clusters_three_impact_test_complete)
+```
+
+```{r, include=TRUE}
+scaled_cluster_gender_tbl(clusters_three_impact_test_complete,
+                          gender,
+                          symptom_cluster,
+                          post_injury_1_score)
+```
+
+### 3 Tests Cluster Boxplot - Test 1
+
+```{r, include=TRUE, fig.width=10}
+gender_cluster_bxp(clusters_three_impact_test_complete,
+                            symptom_cluster,
+                            post_injury_1_score,
+                            gender)
+```
+
+### 3 Tests Cluster Two-Way ANOVA - Test 1
+
+```{r, include=FALSE}
+cluster_three_tests_aov2_1 <- aov(post_injury_1_score ~ symptom_cluster * gender, 
+                            data = clusters_three_impact_test_complete)
+
+
+summary(cluster_three_tests_aov2_1)
+
+cluster_three_tests_aov2_1
+
+Anova(cluster_three_tests_aov2_1, type = "III")
+
+TukeyHSD(cluster_three_tests_aov2_1)
+
+res_3_1 <- TukeyHSD(cluster_three_tests_aov2_1)
+
+
+a_3_1 <- Anova(cluster_three_tests_aov2_1, type = "III")
+
+```
+
+
+```{r, include=TRUE}
+reactable(a_3_1)
+```
+
+### 3 Tests Cluster PWC - Test 1
+
+```{r, include=TRUE}
+tidy(res_3_1) %>% 
+  reactable()
+```
+
+
+### 3 Tests Cluster Summary - Test 2
+
+```{r, include=TRUE}
+scaled_cluster_gender_tbl(clusters_three_impact_test_complete,
+                          gender,
+                          symptom_cluster,
+                          post_injury_2_score)
+```
+
+### 3 Tests Cluster Boxplot - Test 2
+
+```{r, include=TRUE, fig.width=10}
+gender_cluster_bxp(clusters_three_impact_test_complete,
+                            symptom_cluster,
+                            post_injury_2_score,
+                            gender)
+```
+
+### 3 Tests Cluster Two-Way ANOVA - Test 2
+
+```{r, include=FALSE}
+cluster_three_tests_aov2_2 <- aov(post_injury_2_score ~ symptom_cluster * gender, 
+                            data = clusters_three_impact_test_complete)
+
+
+summary(cluster_three_tests_aov2_2)
+
+cluster_three_tests_aov2_2
+
+Anova(cluster_three_tests_aov2_2, type = "III")
+
+TukeyHSD(cluster_three_tests_aov2_2)
+
+
+res_3_2 <- TukeyHSD(cluster_three_tests_aov2_2)
+
+
+a_3_2 <- Anova(cluster_three_tests_aov2_2, type = "III")
+
+```
+
+
+```{r, include=TRUE}
+reactable(a_3_2)
+```
+
+### 3 Tests Cluster PWC - Test 2
+
+```{r, include=TRUE}
+tidy(res_3_2) %>% 
+  reactable()
+```
+
+
+### 3 Tests Cluster Summary - Test 3
+
+```{r, include=TRUE}
+scaled_cluster_gender_tbl(clusters_three_impact_test_complete,
+                          gender,
+                          symptom_cluster,
+                          post_injury_3_score)
+```
+
+### 3 Tests Cluster Boxplot - Test 3
+
+```{r, include=TRUE, fig.width=10}
+gender_cluster_bxp(clusters_three_impact_test_complete,
+                            symptom_cluster,
+                            post_injury_3_score,
+                            gender)
+```
+
+### 3 Tests Cluster Two-Way ANOVA - Test 3
+
+```{r, include=FALSE}
+cluster_three_tests_aov2_3 <- aov(post_injury_3_score ~ symptom_cluster * gender, 
+                            data = clusters_three_impact_test_complete)
+
+
+summary(cluster_three_tests_aov2_3)
+
+cluster_three_tests_aov2_3
+
+Anova(cluster_three_tests_aov2_3, type = "III")
+
+TukeyHSD(cluster_three_tests_aov2_3)
+
+
+res_3_3 <- TukeyHSD(cluster_three_tests_aov2_3)
+
+
+a_3_3 <- Anova(cluster_three_tests_aov2_3, type = "III")
+
+```
+
+
+```{r, include=TRUE}
+reactable(a_3_3)
+```
+
+### 3 Tests Cluster PWC - Test 3
+
+```{r, include=TRUE}
+tidy(res_3_3) %>% 
+  reactable()
+```
+
+
+Row {.tabset}
+-----------------------------------------------------------------------
+
+### 4 Tests Cluster Summary - Test 1
+
+```{r, include=FALSE}
+clusters_four_impact_test_complete[sapply(clusters_four_impact_test_complete, is.character)] <- lapply(clusters_four_impact_test_complete[sapply(clusters_four_impact_test_complete, is.character)], as.factor)
+
+str(clusters_four_impact_test_complete)
+```
+
+```{r, include=TRUE}
+scaled_cluster_gender_tbl(clusters_four_impact_test_complete,
+                          gender,
+                          symptom_cluster,
+                          post_injury_1_score)
+```
+
+### 4 Tests Cluster Boxplot - Test 1
+
+```{r, include=TRUE, fig.width=10}
+gender_cluster_bxp(clusters_four_impact_test_complete,
+                            symptom_cluster,
+                            post_injury_1_score,
+                            gender)
+```
+
+### 4 Tests Cluster Two-Way ANOVA - Test 1
+
+```{r, include=FALSE}
+cluster_four_tests_aov2_1 <- aov(post_injury_1_score ~ symptom_cluster * gender, 
+                            data = clusters_four_impact_test_complete)
+
+
+summary(cluster_four_tests_aov2_1)
+
+cluster_four_tests_aov2_1
+
+Anova(cluster_four_tests_aov2_1, type = "III")
+
+TukeyHSD(cluster_four_tests_aov2_1)
+
+res_4_1 <- TukeyHSD(cluster_four_tests_aov2_1)
+
+
+a_4_1 <- Anova(cluster_four_tests_aov2_1, type = "III")
+
+```
+
+
+```{r, include=TRUE}
+reactable(a_4_1)
+```
+
+### 4 Tests Cluster PWC - Test 1
+
+```{r, include=TRUE}
+tidy(res_4_1) %>% 
+  reactable()
+```
+
+
+### 4 Tests Cluster Summary - Test 2
+
+```{r, include=TRUE}
+scaled_cluster_gender_tbl(clusters_four_impact_test_complete,
+                          gender,
+                          symptom_cluster,
+                          post_injury_2_score)
+```
+
+### 4 Tests Cluster Boxplot - Test 2
+
+```{r, include=TRUE, fig.width=10}
+gender_cluster_bxp(clusters_four_impact_test_complete,
+                            symptom_cluster,
+                            post_injury_2_score,
+                            gender)
+```
+
+### 4 Tests Cluster Two-Way ANOVA - Test 2
+
+```{r, include=FALSE}
+cluster_four_tests_aov2_2 <- aov(post_injury_2_score ~ symptom_cluster * gender, 
+                            data = clusters_four_impact_test_complete)
+
+
+summary(cluster_four_tests_aov2_2)
+
+cluster_four_tests_aov2_2
+
+Anova(cluster_four_tests_aov2_2, type = "III")
+
+TukeyHSD(cluster_four_tests_aov2_2)
+
+
+res_4_2 <- TukeyHSD(cluster_four_tests_aov2_2)
+
+
+a_4_2 <- Anova(cluster_four_tests_aov2_2, type = "III")
+
+```
+
+
+```{r, include=TRUE}
+reactable(a_4_2)
+```
+
+### 4 Tests Cluster PWC - Test 2
+
+```{r, include=TRUE}
+tidy(res_4_2) %>% 
+  reactable()
+```
+
+
+### 4 Tests Cluster Summary - Test 3
+
+```{r, include=TRUE}
+scaled_cluster_gender_tbl(clusters_four_impact_test_complete,
+                          gender,
+                          symptom_cluster,
+                          post_injury_3_score)
+```
+
+### 4 Tests Cluster Boxplot - Test 3
+
+```{r, include=TRUE, fig.width=10}
+gender_cluster_bxp(clusters_four_impact_test_complete,
+                            symptom_cluster,
+                            post_injury_3_score,
+                            gender)
+```
+
+### 4 Tests Cluster Two-Way ANOVA - Test 3
+
+```{r, include=FALSE}
+cluster_four_tests_aov2_3 <- aov(post_injury_3_score ~ symptom_cluster * gender, 
+                            data = clusters_four_impact_test_complete)
+
+
+summary(cluster_four_tests_aov2_3)
+
+cluster_four_tests_aov2_3
+
+Anova(cluster_four_tests_aov2_3, type = "III")
+
+TukeyHSD(cluster_four_tests_aov2_3)
+
+
+res_4_3 <- TukeyHSD(cluster_four_tests_aov2_3)
+
+
+a_4_3 <- Anova(cluster_four_tests_aov2_3, type = "III")
+
+```
+
+
+```{r, include=TRUE}
+reactable(a_4_3)
+```
+
+### 4 Tests Cluster PWC - Test 3
+
+```{r, include=TRUE}
+tidy(res_4_3) %>% 
+  reactable()
+```
+
+
+### 4 Tests Cluster Summary - Test 4
+
+```{r, include=TRUE}
+scaled_cluster_gender_tbl(clusters_four_impact_test_complete,
+                          gender,
+                          symptom_cluster,
+                          post_injury_4_score)
+```
+
+### 4 Tests Cluster Boxplot - Test 4
+
+```{r, include=TRUE, fig.width=10}
+gender_cluster_bxp(clusters_four_impact_test_complete,
+                            symptom_cluster,
+                            post_injury_4_score,
+                            gender)
+```
+
+### 4 Tests Cluster Two-Way ANOVA - Test 4
+
+```{r, include=FALSE}
+cluster_four_tests_aov2_4 <- aov(post_injury_4_score ~ symptom_cluster * gender, 
+                            data = clusters_four_impact_test_complete)
+
+
+summary(cluster_four_tests_aov2_4)
+
+cluster_four_tests_aov2_4
+
+Anova(cluster_four_tests_aov2_4, type = "III")
+
+TukeyHSD(cluster_four_tests_aov2_4)
+
+
+res_4_4 <- TukeyHSD(cluster_four_tests_aov2_4)
+
+
+a_4_4 <- Anova(cluster_four_tests_aov2_4, type = "III")
+
+```
+
+
+```{r, include=TRUE}
+reactable(a_4_4)
+```
+
+### 4 Tests Cluster PWC - Test 4
+
+```{r, include=TRUE}
+tidy(res_4_4) %>% 
+  reactable()
+```
