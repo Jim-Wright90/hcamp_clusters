@@ -715,7 +715,13 @@ cluster_one_test_aov_pwc <- cluster_one_test_aov_pwc %>%
 
 ```{r, include=TRUE}
 cluster_one_test_aov_pwc %>% 
-  reactable()
+  reactable(pagination = TRUE,
+    striped = TRUE,
+    outlined = TRUE,
+    searchable = TRUE,
+    compact = TRUE,
+    highlight = TRUE,
+    bordered = TRUE)
 ```
 
 
@@ -830,7 +836,13 @@ cluster_two_tests_aov_pwc_1 <- cluster_two_tests_aov_pwc_1 %>%
 
 ```{r, include=TRUE}
 cluster_two_tests_aov_pwc_1 %>% 
-  reactable()
+  reactable(pagination = TRUE,
+    striped = TRUE,
+    outlined = TRUE,
+    searchable = TRUE,
+    compact = TRUE,
+    highlight = TRUE,
+    bordered = TRUE)
 ```
 
 
@@ -873,7 +885,13 @@ cluster_two_tests_aov_pwc_2 <- cluster_two_tests_aov_pwc_2 %>%
 
 ```{r, include=TRUE}
 cluster_two_tests_aov_pwc_2 %>% 
-  reactable()
+  reactable(pagination = TRUE,
+    striped = TRUE,
+    outlined = TRUE,
+    searchable = TRUE,
+    compact = TRUE,
+    highlight = TRUE,
+    bordered = TRUE)
 ```
 
 
@@ -1025,7 +1043,13 @@ cluster_three_tests_aov_pwc_1 <- cluster_three_tests_aov_pwc_1 %>%
 
 ```{r, include=TRUE}
 cluster_three_tests_aov_pwc_1 %>% 
-  reactable()
+  reactable(pagination = TRUE,
+    striped = TRUE,
+    outlined = TRUE,
+    searchable = TRUE,
+    compact = TRUE,
+    highlight = TRUE,
+    bordered = TRUE)
 ```
 
 
@@ -1068,7 +1092,13 @@ cluster_three_tests_aov_pwc_2 <- cluster_three_tests_aov_pwc_2 %>%
 
 ```{r, include=TRUE}
 cluster_three_tests_aov_pwc_2 %>% 
-  reactable()
+  reactable(pagination = TRUE,
+    striped = TRUE,
+    outlined = TRUE,
+    searchable = TRUE,
+    compact = TRUE,
+    highlight = TRUE,
+    bordered = TRUE)
 ```
 
 
@@ -1111,7 +1141,13 @@ cluster_three_tests_aov_pwc_3 <- cluster_three_tests_aov_pwc_3 %>%
 
 ```{r, include=TRUE}
 cluster_three_tests_aov_pwc_3 %>% 
-  reactable()
+  reactable(pagination = TRUE,
+    striped = TRUE,
+    outlined = TRUE,
+    searchable = TRUE,
+    compact = TRUE,
+    highlight = TRUE,
+    bordered = TRUE)
 ```
 
 
@@ -1302,7 +1338,13 @@ cluster_four_tests_aov_pwc_1 <- cluster_four_tests_aov_pwc_1 %>%
 
 ```{r, include=TRUE}
 cluster_four_tests_aov_pwc_1 %>% 
-  reactable()
+  reactable(pagination = TRUE,
+    striped = TRUE,
+    outlined = TRUE,
+    searchable = TRUE,
+    compact = TRUE,
+    highlight = TRUE,
+    bordered = TRUE)
 ```
 
 
@@ -1345,7 +1387,13 @@ cluster_four_tests_aov_pwc_2 <- cluster_four_tests_aov_pwc_2 %>%
 
 ```{r, include=TRUE}
 cluster_four_tests_aov_pwc_2 %>% 
-  reactable()
+  reactable(pagination = TRUE,
+    striped = TRUE,
+    outlined = TRUE,
+    searchable = TRUE,
+    compact = TRUE,
+    highlight = TRUE,
+    bordered = TRUE)
 ```
 
 
@@ -1388,7 +1436,13 @@ cluster_four_tests_aov_pwc_3 <- cluster_four_tests_aov_pwc_3 %>%
 
 ```{r, include=TRUE}
 cluster_four_tests_aov_pwc_3 %>% 
-  reactable()
+  reactable(pagination = TRUE,
+    striped = TRUE,
+    outlined = TRUE,
+    searchable = TRUE,
+    compact = TRUE,
+    highlight = TRUE,
+    bordered = TRUE)
 ```
 
 
@@ -1431,7 +1485,13 @@ cluster_four_tests_aov_pwc_4 <- cluster_four_tests_aov_pwc_4 %>%
 
 ```{r, include=TRUE}
 cluster_four_tests_aov_pwc_4 %>% 
-  reactable()
+  reactable(pagination = TRUE,
+    striped = TRUE,
+    outlined = TRUE,
+    searchable = TRUE,
+    compact = TRUE,
+    highlight = TRUE,
+    bordered = TRUE)
 ```
 
 
@@ -1440,7 +1500,220 @@ cluster_four_tests_aov_pwc_4 %>%
 Sidebar {.sidebar}
 ------------
 
+**Research Questions:**
 
+  1. Does reported symptom severity differ by specific symptom cluster?
+  2. Do males and females report differing levels of symptom severity?
+  3. Are differences in symptom cluster severity ratings related to the differences between male and female symptom severity ratings?
+  
+
+**One Test Summary:**
+
+  * Significant interaction effect between symptom cluster and gender identified
+  * Non-significant PWC include:
+    + Male sleep/male cognitive
+    + Male ocular-motor/male anxiety-mood
+    + Male headache migraine/female sleep
+    + Male vestibular/female ocular-motor
+    + Male headache-migraine/female cognitive 
+    + Female vestibular/female anxiety-mood
+    + Female sleep/female cognitive 
+    + Sleep/cognitive
+    + Ocular-motor/anxiety-mood 
+  
+**Two Tests Summary:**
+
+_Test One:_
+
+  * Significant interaction effect between symptom cluster and gender identified
+  * Non-significant PWC include: 
+    + Male sleep/male cognitive
+    + Male ocular-motor/male anxiety-mood
+    + Male sleep/female vestibular
+    + Male cognitive/female vestibular
+    + Male ocular-motor/female ocular-motor
+    + Male vestibular/female ocular-motor
+    + Male headache-migraine/female sleep
+    + Male headache/female cognitive
+    + Female sleep/female cognitive 
+    + Male sleep/female anxiety-mood
+    + Female vestibular/female anxiety-mood
+    + Sleep/cognitive 
+    
+_Test Two:_
+
+  * Significant interaction effect between symptom cluster and gender identified
+  * Non-significant PWC include: 
+    + Male vestibular/male ocular-motor
+    + Male vestibular/male anxiety-mood
+    + Male sleep/male cognitive 
+    + Male ocular-motor/male anxiety-mood 
+    + Male vestibular/female vestibular 
+    + Male ocular-motor/female ocular-motor
+    + Male vestibular/female ocular-motor
+    + Male headache-migraine/female sleep
+    + Male anxiety-mood/female ocular-motor 
+    + Female vestibular/female ocular-motor
+    + Male headache-migraine/female cognitive 
+    + Female vestibular/female anxiety-mood 
+    + Male cognitive/female anxiety-mood 
+    + Male sleep/female anxiety-mood 
+    + Female sleep/female cognitive 
+    + Vestibular/anxiety-mood
+    + Sleep/cognitive 
+    
+
+**Three Tests Summary:**
+
+_Test One:_
+
+  * Significant interaction effect between symptom cluster and gender identified
+  * Non-significant PWC include: 
+    + Male sleep/male cognitive 
+    + Male ocular-motor/male anxiety-mood 
+    + Male vestibular/female vestibular 
+    + Male sleep/female vestibular 
+    + Male ocular-motor/female ocular-motor
+    + Male vestibular/female ocular-motor
+    + Male cognitive/female sleep
+    + Male headache-migraine/female sleep
+    + Male anxiety-mood/female ocular-motor
+    + Male headache-migraine/female cognitive 
+    + Female vestibular/female anxiety-mood 
+    + Male/cognitive/female anxiety-mood
+    + Male sleep/female anxiety-mood 
+    + Male vestibular/female anxiety-mood 
+    + Female sleep/female cognitive 
+    
+_Test Two:_
+
+  * Significant interaction effect between symptom cluster and gender identified
+  * Non-significant PWC include: 
+    + Male vestibular/male ocular-motor
+    + Male vestibular/male anxiety-mood 
+    + Male sleep/male cognitive 
+    + Male ocular-motor/male anxiety-mood 
+    + Male vestibular/female vestibular 
+    + Male ocular-motor/female vestibular 
+    + Male anxiety-mood/female vestibular
+    + Male ocular-motor/female ocular-motor
+    + Male vestibular/female ocular-motor
+    + Male cognitive/female sleep
+    + Male headache-migraine/female sleep
+    + Male sleep/female sleep
+    + Male anxiety-mood/female ocular-motor
+    + Female vestibular/female ocular-motor 
+    + Male cognitive/female cognitive 
+    + Male headache-migraine/female cognitive 
+    + Male sleep/female cognitive 
+    + Female sleep/female cognitive 
+    + Male vestibular/female anxiety-mood 
+    + Male ocular-motor/female anxiety-mood 
+    + Male cognitive/female anxiety-mood
+    + Female vestibular/female anxiety-mood 
+    + Female ocular-motor/female anxiety-mood
+    + Vestibular/ocular-motor 
+    + Ocular-motor/anxiety-mood
+    + Vestibular/anxiety-mood
+    + Sleep/cognitive 
+    
+    
+_Test Three:_
+
+  * Significant interaction effect between symptom cluster and gender identified
+  * Non-significant PWC include: 
+    + Male vestibular/male ocular-motor
+    + Male vestibular/male anxiety-mood
+    + Male headache-migraine/male cognitive 
+    + Male sleep/male cognitive 
+    + Male sleep/male headache-migraine 
+    + Male ocular-motor/male anxiety-mood
+    + Male vestibular/female vestibular
+    + Male sleep/female vestibular
+    + Male ocular-motor/female vestibular 
+    + Male cognitive/female vestibular 
+    + Male ocular-motor/female ocular-motor 
+    + Male sleep/female ocular-motor
+    + Male vestibular/female ocular-motor 
+    + Male cognitive/female sleep
+    + Male headache-migraine/female sleep
+    + Male sleep/female sleep
+    + Male anxiety-mood/female ocular-motor
+    + Female vestibular/female ocular-motor
+    + Female sleep/female headache-migraine 
+    + Male sleep/female cognitive 
+    + Male headache-migraine/female cognitive 
+    + Male cognitive/female cognitive 
+    + Female sleep/female cognitive 
+    + Female headache-migraine/female cognitive 
+    + Male sleep/female anxiety-mood 
+    + Male headache-migraine/female anxiety-mood
+    + Male cognitive/female anxiety-mood
+    + Female vestibular/female anxiety-mood
+    + Female sleep/female anxiety-mood
+    + Female cognitive/female anxiety-mood
+    + Vestibular/ocular-motor
+    + Sleep/cognitive 
+    + Headache-migraine/cognitive 
+    + Vestibular/anxiety-mood
+    + Ocular-motor/anxiety-mood 
+    
+
+**Four Tests Summary:**
+
+_Test One:_
+
+  * Interaction effect between symptom cluster and gender **not** significant 
+  * Main effect of symptom cluster significant 
+  * Main effect of gender significant 
+
+    
+_Test Two:_
+
+  * Interaction effect between symptom cluster and gender **not** significant 
+  * Main effect of symptom cluster significant 
+  * Main effect of gender significant 
+    
+    
+_Test Three:_
+
+  * Interaction effect between symptom cluster and gender **not** significant 
+  * Main effect of symptom cluster significant 
+  * Main effect of gender significant 
+  
+_Test Four:_ 
+
+  * Significant interaction effect between symptom cluster and gender identified
+  * Many non-significant PWC
+  * Significant PWC include: 
+    + Male vestibular/female sleep
+    + Male anxiety-mood/female sleep
+    + Male anxiety-mood/female headache-migraine 
+    + Male cognitive/female headache-migraine 
+    + Male headache-migraine/female headache-migraine 
+    + Male ocular-motor/female headache-migraine 
+    + Male sleep/female headache-migraine 
+    + Male vestibular/female headache-migraine 
+    + Female vestibular/female headache-migraine 
+    + Female ocular-motor/female headache-migraine 
+    + Male vestibular/female cognitive 
+    + Male sleep/female cognitive 
+    + Male ocular-motor/female cognitive 
+    + Male headache-migraine/female cognitive 
+    + Male cognitive/female cognitive 
+    + Male anxiety-mood/female cognitive 
+    + Female vestibular/Female cognitive 
+    + Female cognitive/female ocular-motor 
+    + Female headache-migraine/female anxiety-mood 
+    + Male/female 
+    + Vestibular/headache-migraine 
+    + Headache-migraine/anxiety-mood
+    + Vestibular/cognitive 
+    + Ocular-motor/headache-migraine 
+    
+    
+    
+    
 
 Row {.tabset}
 -----------------------------------------------------------------------
@@ -1569,17 +1842,46 @@ a_1 <- Anova(cluster_one_test_aov2, type = "III")
 
 reactable(a_1)
 
+anova_react <- function(df) {
+  df %>% 
+    reactable(
+      defaultColDef = colDef(align = "center",
+                             format = colFormat(digits = 2, separators = TRUE)),
+      pagination = TRUE,
+      striped = TRUE,
+      outlined = TRUE,
+      compact = TRUE,
+      highlight = TRUE,
+      bordered = TRUE
+    )
+}
+
+pwc_react <- function(df) {
+  df %>% 
+    reactable(
+      defaultColDef = colDef(align = "center",
+                             format = colFormat(digits = 3, separators = TRUE)),
+      pagination = TRUE,
+      striped = TRUE,
+      outlined = TRUE,
+      compact = TRUE,
+      highlight = TRUE,
+      bordered = TRUE,
+      searchable = TRUE
+    )  
+}
+
 ```
 
 ```{r, include=TRUE}
-reactable(a_1)
+anova_react(a_1)
 ```
 
 ### 1 Test Cluster PWC
 
 ```{r, include=TRUE}
 tidy(res_1) %>% 
-  reactable()
+  pwc_react()
 ```
 
 
@@ -1635,14 +1937,14 @@ a_2_1 <- Anova(cluster_two_tests_aov2_1, type = "III")
 
 
 ```{r, include=TRUE}
-reactable(a_2_1)
+anova_react(a_2_1)
 ```
 
 ### 2 Tests Cluster PWC - Test 1
 
 ```{r, include=TRUE}
 tidy(res_2_1) %>% 
-  reactable()
+  pwc_react()
 ```
 
 
@@ -1689,14 +1991,14 @@ a_2_2 <- Anova(cluster_two_tests_aov2_2, type = "III")
 
 
 ```{r, include=TRUE}
-reactable(a_2_2)
+anova_react(a_2_2)
 ```
 
 ### 2 Tests Cluster PWC - Test 1
 
 ```{r, include=TRUE}
 tidy(res_2_2) %>% 
-  reactable()
+  pwc_react()
 ```
 
 
@@ -1751,14 +2053,14 @@ a_3_1 <- Anova(cluster_three_tests_aov2_1, type = "III")
 
 
 ```{r, include=TRUE}
-reactable(a_3_1)
+anova_react(a_3_1)
 ```
 
 ### 3 Tests Cluster PWC - Test 1
 
 ```{r, include=TRUE}
 tidy(res_3_1) %>% 
-  reactable()
+  pwc_react()
 ```
 
 
@@ -1805,14 +2107,14 @@ a_3_2 <- Anova(cluster_three_tests_aov2_2, type = "III")
 
 
 ```{r, include=TRUE}
-reactable(a_3_2)
+anova_react(a_3_2)
 ```
 
 ### 3 Tests Cluster PWC - Test 2
 
 ```{r, include=TRUE}
 tidy(res_3_2) %>% 
-  reactable()
+  pwc_react()
 ```
 
 
@@ -1859,14 +2161,14 @@ a_3_3 <- Anova(cluster_three_tests_aov2_3, type = "III")
 
 
 ```{r, include=TRUE}
-reactable(a_3_3)
+anova_react(a_3_3)
 ```
 
 ### 3 Tests Cluster PWC - Test 3
 
 ```{r, include=TRUE}
 tidy(res_3_3) %>% 
-  reactable()
+  pwc_react()
 ```
 
 
@@ -1921,14 +2223,14 @@ a_4_1 <- Anova(cluster_four_tests_aov2_1, type = "III")
 
 
 ```{r, include=TRUE}
-reactable(a_4_1)
+anova_react(a_4_1)
 ```
 
 ### 4 Tests Cluster PWC - Test 1
 
 ```{r, include=TRUE}
 tidy(res_4_1) %>% 
-  reactable()
+  pwc_react()
 ```
 
 
@@ -1975,14 +2277,14 @@ a_4_2 <- Anova(cluster_four_tests_aov2_2, type = "III")
 
 
 ```{r, include=TRUE}
-reactable(a_4_2)
+anova_react(a_4_2)
 ```
 
 ### 4 Tests Cluster PWC - Test 2
 
 ```{r, include=TRUE}
 tidy(res_4_2) %>% 
-  reactable()
+  pwc_react()
 ```
 
 
@@ -2029,14 +2331,14 @@ a_4_3 <- Anova(cluster_four_tests_aov2_3, type = "III")
 
 
 ```{r, include=TRUE}
-reactable(a_4_3)
+anova_react(a_4_3)
 ```
 
 ### 4 Tests Cluster PWC - Test 3
 
 ```{r, include=TRUE}
 tidy(res_4_3) %>% 
-  reactable()
+  pwc_react()
 ```
 
 
@@ -2083,12 +2385,12 @@ a_4_4 <- Anova(cluster_four_tests_aov2_4, type = "III")
 
 
 ```{r, include=TRUE}
-reactable(a_4_4)
+anova_react(a_4_4)
 ```
 
 ### 4 Tests Cluster PWC - Test 4
 
 ```{r, include=TRUE}
 tidy(res_4_4) %>% 
-  reactable()
+  pwc_react()
 ```
