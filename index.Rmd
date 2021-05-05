@@ -1803,11 +1803,11 @@ gender_cluster_bxp(clusters_one_impact_test_scaled_long,
 
 ```
 
-```{r, include=TRUE, fig.width=10}
-gender_cluster_bxp(clusters_one_impact_test_scaled_long,
+```{r, include=TRUE}
+ggplotly(gender_cluster_bxp(clusters_one_impact_test_scaled_long,
                             symptom_cluster,
                             post_injury_1_score,
-                            gender)
+                            gender))
 ```
 
 
@@ -1905,11 +1905,11 @@ scaled_cluster_gender_tbl(clusters_two_impact_test_complete,
 
 ### 2 Tests Cluster Boxplot - Test 1
 
-```{r, include=TRUE, fig.width=10}
-gender_cluster_bxp(clusters_two_impact_test_complete,
+```{r, include=TRUE}
+ggplotly(gender_cluster_bxp(clusters_two_impact_test_complete,
                             symptom_cluster,
                             post_injury_1_score,
-                            gender)
+                            gender))
 ```
 
 ### 2 Tests Cluster Two-Way ANOVA - Test 1
@@ -1959,11 +1959,11 @@ scaled_cluster_gender_tbl(clusters_two_impact_test_complete,
 
 ### 2 Tests Cluster Boxplot - Test 2
 
-```{r, include=TRUE, fig.width=10}
-gender_cluster_bxp(clusters_two_impact_test_complete,
+```{r, include=TRUE}
+ggplotly(gender_cluster_bxp(clusters_two_impact_test_complete,
                             symptom_cluster,
                             post_injury_2_score,
-                            gender)
+                            gender))
 ```
 
 ### 2 Tests Cluster Two-Way ANOVA - Test 2
@@ -2022,11 +2022,11 @@ scaled_cluster_gender_tbl(clusters_three_impact_test_complete,
 
 ### 3 Tests Cluster Boxplot - Test 1
 
-```{r, include=TRUE, fig.width=10}
-gender_cluster_bxp(clusters_three_impact_test_complete,
+```{r, include=TRUE}
+ggplotly(gender_cluster_bxp(clusters_three_impact_test_complete,
                             symptom_cluster,
                             post_injury_1_score,
-                            gender)
+                            gender))
 ```
 
 ### 3 Tests Cluster Two-Way ANOVA - Test 1
@@ -2075,11 +2075,11 @@ scaled_cluster_gender_tbl(clusters_three_impact_test_complete,
 
 ### 3 Tests Cluster Boxplot - Test 2
 
-```{r, include=TRUE, fig.width=10}
-gender_cluster_bxp(clusters_three_impact_test_complete,
+```{r, include=TRUE}
+ggplotly(gender_cluster_bxp(clusters_three_impact_test_complete,
                             symptom_cluster,
                             post_injury_2_score,
-                            gender)
+                            gender))
 ```
 
 ### 3 Tests Cluster Two-Way ANOVA - Test 2
@@ -2129,11 +2129,11 @@ scaled_cluster_gender_tbl(clusters_three_impact_test_complete,
 
 ### 3 Tests Cluster Boxplot - Test 3
 
-```{r, include=TRUE, fig.width=10}
-gender_cluster_bxp(clusters_three_impact_test_complete,
+```{r, include=TRUE}
+ggplotly(gender_cluster_bxp(clusters_three_impact_test_complete,
                             symptom_cluster,
                             post_injury_3_score,
-                            gender)
+                            gender))
 ```
 
 ### 3 Tests Cluster Two-Way ANOVA - Test 3
@@ -2192,11 +2192,11 @@ scaled_cluster_gender_tbl(clusters_four_impact_test_complete,
 
 ### 4 Tests Cluster Boxplot - Test 1
 
-```{r, include=TRUE, fig.width=10}
-gender_cluster_bxp(clusters_four_impact_test_complete,
+```{r, include=TRUE}
+ggplotly(gender_cluster_bxp(clusters_four_impact_test_complete,
                             symptom_cluster,
                             post_injury_1_score,
-                            gender)
+                            gender))
 ```
 
 ### 4 Tests Cluster Two-Way ANOVA - Test 1
@@ -2245,11 +2245,11 @@ scaled_cluster_gender_tbl(clusters_four_impact_test_complete,
 
 ### 4 Tests Cluster Boxplot - Test 2
 
-```{r, include=TRUE, fig.width=10}
-gender_cluster_bxp(clusters_four_impact_test_complete,
+```{r, include=TRUE}
+ggplotly(gender_cluster_bxp(clusters_four_impact_test_complete,
                             symptom_cluster,
                             post_injury_2_score,
-                            gender)
+                            gender))
 ```
 
 ### 4 Tests Cluster Two-Way ANOVA - Test 2
@@ -2299,11 +2299,11 @@ scaled_cluster_gender_tbl(clusters_four_impact_test_complete,
 
 ### 4 Tests Cluster Boxplot - Test 3
 
-```{r, include=TRUE, fig.width=10}
-gender_cluster_bxp(clusters_four_impact_test_complete,
+```{r, include=TRUE}
+ggplotly(gender_cluster_bxp(clusters_four_impact_test_complete,
                             symptom_cluster,
                             post_injury_3_score,
-                            gender)
+                            gender))
 ```
 
 ### 4 Tests Cluster Two-Way ANOVA - Test 3
@@ -2353,11 +2353,11 @@ scaled_cluster_gender_tbl(clusters_four_impact_test_complete,
 
 ### 4 Tests Cluster Boxplot - Test 4
 
-```{r, include=TRUE, fig.width=10}
-gender_cluster_bxp(clusters_four_impact_test_complete,
+```{r, include=TRUE}
+ggplotly(gender_cluster_bxp(clusters_four_impact_test_complete,
                             symptom_cluster,
                             post_injury_4_score,
-                            gender)
+                            gender))
 ```
 
 ### 4 Tests Cluster Two-Way ANOVA - Test 4
@@ -2393,4 +2393,484 @@ anova_react(a_4_4)
 ```{r, include=TRUE}
 tidy(res_4_4) %>% 
   pwc_react()
+```
+
+
+# Test 1 Symptom Comparison 
+
+Sidebar {.sidebar}
+------------
+
+  * Two-Way ANOVA between the number of tests completed and gender did not find a significant interaction effect for the overall, post-injury 1 total symptom severity score, but the main effects of number of tests completed and gender were both significant 
+  * Follow up One-Way ANOVAs were completed on the main effects and were both significant
+  * Females reported higher total symptom severity ratings than males at time of post-injury 1
+  * All PWC between the number of tests completed were significant, indicating that individuals who end up taking more tests are more symptomatic than individuals who complete less tests. This should provide more support that symptom severity at time of first testing may correlate or predict recovery duration 
+  
+
+Row {.tabset}
+-----------------------------------------------------------------------
+
+### Total Symptom Score Summary 
+
+```{r, include=FALSE}
+names(one_impact_test)
+names(two_impact_test)
+names(three_impact_test)
+names(four_impact_test)
+
+test_one_comparison <- function(df) {
+  df %>% 
+  select(passport_id, 
+         test_date_post_injury_1, 
+         gender, 
+         current_sport_post_injury_1, 
+         total_symptom_score_post_injury_1,
+         headache_migraine_cluster_score_post_injury_1,
+         cognitive_cluster_score_post_injury_1,
+         anxiety_mood_cluster_score_post_injury_1,
+         ocular_motor_cluster_score_post_injury_1,
+         vestibular_cluster_score_post_injury_1,
+         sleep_cluster_score_post_injury_1)
+}
+
+one_impact_comparison <- test_one_comparison(one_impact_test)
+two_impact_comparison <- test_one_comparison(two_impact_test)
+three_impact_comparison <- test_one_comparison(three_impact_test)
+four_impact_comparison <- test_one_comparison(four_impact_test)
+
+all_test_one_comparison <- bind_rows(one_impact_comparison,
+                                     two_impact_comparison,
+                                     three_impact_comparison,
+                                     four_impact_comparison,
+                                     .id = "total_tests_completed")
+
+
+str(all_test_one_comparison)
+
+all_test_one_comparison <- all_test_one_comparison %>% 
+  mutate(total_tests_completed = as.factor(total_tests_completed),
+         gender = as.factor(gender))
+
+str(all_test_one_comparison)
+
+all_test_one_comparison_scaled <- map_df(all_test_one_comparison, rescale01b)
+
+
+col_data <- all_test_one_comparison %>% 
+  select(1:5)
+
+all_test_one_comparison_scaled <- bind_cols(col_data, all_test_one_comparison_scaled)
+  
+str(all_test_one_comparison_scaled)
+```
+
+
+```{r, include=FALSE}
+cluster_smry_tbl2 <- function(df, x) {
+  df %>% 
+  group_by(total_tests_completed, gender) %>% 
+  summarize(mean = mean({{x}}),
+            sd = sd({{x}}),
+            min = min({{x}}),
+            max = max({{x}}),
+            total = length({{x}})) %>%
+  mutate(mean = as.numeric(mean),
+         sd = as.numeric(sd),
+         min = as.numeric(min),
+         max = as.numeric(max),
+         total = as.numeric(total)) %>% 
+  reactable(
+    columns = list(
+      total_tests_completed = colDef(name = "Total Tests Completed",
+                            align = "center"),
+      gender = colDef(name = "Gender",
+                      align = "center"),
+      mean = colDef(name = "Mean",
+                    align = "center",
+                    format = colFormat(digits = 2, separators = TRUE)),
+      sd = colDef(name = "SD",
+                  align = "center",
+                  format = colFormat(digits = 2, separators = TRUE)),
+      min = colDef(name = "Min",
+                   align = "center",
+                   format = colFormat(separators = TRUE)),
+      max = colDef(name = "Max",
+                   align = "center",
+                   format = colFormat(separators = TRUE)),
+      total = colDef(name = "Total",
+                     align = "center",
+                   format = colFormat(separators = TRUE, suffix = " concussions"))),
+    pagination = TRUE,
+    striped = TRUE,
+    outlined = TRUE,
+    compact = TRUE,
+    highlight = TRUE,
+    bordered = TRUE
+  )
+}
+
+cluster_smry_tbl3 <- function(df, x) {
+  df %>% 
+  group_by(total_tests_completed) %>% 
+  summarize(mean = mean({{x}}),
+            sd = sd({{x}}),
+            min = min({{x}}),
+            max = max({{x}}),
+            total = length({{x}})) %>%
+  mutate(mean = as.numeric(mean),
+         sd = as.numeric(sd),
+         min = as.numeric(min),
+         max = as.numeric(max),
+         total = as.numeric(total)) %>% 
+  reactable(
+    columns = list(
+      total_tests_completed = colDef(name = "Total Tests Completed",
+                            align = "center"),
+      mean = colDef(name = "Mean",
+                    align = "center",
+                    format = colFormat(digits = 2, separators = TRUE)),
+      sd = colDef(name = "SD",
+                  align = "center",
+                  format = colFormat(digits = 2, separators = TRUE)),
+      min = colDef(name = "Min",
+                   align = "center",
+                   format = colFormat(separators = TRUE)),
+      max = colDef(name = "Max",
+                   align = "center",
+                   format = colFormat(separators = TRUE)),
+      total = colDef(name = "Total",
+                     align = "center",
+                   format = colFormat(separators = TRUE, suffix = " concussions"))),
+    pagination = TRUE,
+    striped = TRUE,
+    outlined = TRUE,
+    compact = TRUE,
+    highlight = TRUE,
+    bordered = TRUE
+  )
+}
+
+cluster_smry_tbl4 <- function(df, x) {
+  df %>% 
+  group_by(gender) %>% 
+  summarize(mean = mean({{x}}),
+            sd = sd({{x}}),
+            min = min({{x}}),
+            max = max({{x}}),
+            total = length({{x}})) %>%
+  mutate(mean = as.numeric(mean),
+         sd = as.numeric(sd),
+         min = as.numeric(min),
+         max = as.numeric(max),
+         total = as.numeric(total)) %>% 
+  reactable(
+    columns = list(
+      gender = colDef(name = "Gender",
+                      align = "center"),
+      mean = colDef(name = "Mean",
+                    align = "center",
+                    format = colFormat(digits = 2, separators = TRUE)),
+      sd = colDef(name = "SD",
+                  align = "center",
+                  format = colFormat(digits = 2, separators = TRUE)),
+      min = colDef(name = "Min",
+                   align = "center",
+                   format = colFormat(separators = TRUE)),
+      max = colDef(name = "Max",
+                   align = "center",
+                   format = colFormat(separators = TRUE)),
+      total = colDef(name = "Total",
+                     align = "center",
+                   format = colFormat(separators = TRUE, suffix = " concussions"))),
+    pagination = TRUE,
+    striped = TRUE,
+    outlined = TRUE,
+    compact = TRUE,
+    highlight = TRUE,
+    bordered = TRUE
+  )
+}
+```
+
+```{r, include=TRUE}
+cluster_smry_tbl2(all_test_one_comparison, total_symptom_score_post_injury_1)
+```
+
+### Total Symptom Score Summary - Gender
+
+```{r, include=TRUE}
+cluster_smry_tbl4(all_test_one_comparison, total_symptom_score_post_injury_1)
+```
+
+### Total Symptom Score Summary - Number of Tests Completed
+
+```{r, include=TRUE}
+cluster_smry_tbl3(all_test_one_comparison, total_symptom_score_post_injury_1)
+```
+
+### Total Symptom Score Boxplot 
+
+```{r, include=FALSE}
+test_1_bxp <- function(df, a, b, c) {
+ggplot(df,
+  aes({{a}}, {{b}}, color = {{c}})) +
+  geom_boxplot() + 
+  scale_color_OkabeIto() + 
+  labs(x = "Number of Tests Completed",
+       y = "Test 1 Severity Score") +
+  theme(legend.title = element_blank()) 
+}
+```
+
+```{r, include=TRUE}
+ggplotly(test_1_bxp(all_test_one_comparison,
+           total_tests_completed,
+           total_symptom_score_post_injury_1,
+           gender))
+```
+
+Row {.tabset}
+-----------------------------------------------------------------------
+
+### Total Symptom Score Two-Way ANOVA
+
+```{r, include=FALSE}
+
+total_symptom_score_aov <- aov(total_symptom_score_post_injury_1 ~ total_tests_completed * gender, data = all_test_one_comparison)
+
+
+summary(total_symptom_score_aov)
+
+total_symptom_score_aov_gender <- aov(total_symptom_score_post_injury_1 ~ gender,
+                                      data = all_test_one_comparison)
+
+summary(total_symptom_score_aov_gender)
+
+total_symptom_score_aov_tests <- aov(total_symptom_score_post_injury_1 ~ total_tests_completed, data = all_test_one_comparison)
+
+summary(total_symptom_score_aov_tests)
+
+Anova(total_symptom_score_aov, type = "III")
+Anova(total_symptom_score_aov_gender, type = "III")
+Anova(total_symptom_score_aov_tests, type = "III")
+
+TukeyHSD(total_symptom_score_aov)
+TukeyHSD(total_symptom_score_aov_gender)
+TukeyHSD(total_symptom_score_aov_tests)
+
+total_symptom_interaction_results <- Anova(total_symptom_score_aov, type = "III")
+total_symptom_gender_results <- Anova(total_symptom_score_aov_gender, type = "III")
+total_symptom_tests_results <- Anova(total_symptom_score_aov_tests, type = "III")
+
+total_pwc <- TukeyHSD(total_symptom_score_aov)
+gender_pwc <- TukeyHSD(total_symptom_score_aov_gender)
+tests_pwc <- TukeyHSD(total_symptom_score_aov_tests)
+
+```
+
+
+```{r, include=TRUE}
+anova_react(total_symptom_interaction_results)
+```
+
+### Total Symptom Score Two-Way ANOVA Interaction PWC
+
+```{r, include=TRUE}
+tidy(total_pwc) %>% 
+  pwc_react()
+```
+
+### Total Symptom Score One-Way ANOVA Main Effect Gender
+
+```{r, include=TRUE}
+anova_react(total_symptom_gender_results)
+```
+
+### Total Symptom Score One-Way ANOVA Main Effect Gender PWC
+
+```{r, include=TRUE}
+tidy(gender_pwc) %>% 
+  pwc_react()
+```
+
+### Total Symptom Score One-Way ANOVA Main Effect Number of Tests Completed
+
+```{r, include=TRUE}
+anova_react(total_symptom_tests_results)
+```
+
+### Total Symptom Score One-Way ANOVA Main Effect Number of Tests Completed PWC
+
+```{r, include=TRUE}
+tidy(tests_pwc) %>% 
+  pwc_react()
+```
+
+# Time 
+
+Sidebar {.sidebar}
+------------
+
+This tab provides summary tables and plots for the duration of time between completion of ImPACT tests for the samples that completed two, three, or four tests. 
+
+The number of days between tests was influential in the identification of data analyzed throughout this project. Following the results of Tamura et al. (2020) that identified the majority of students complete the RTP protocol within 30 days, the following filter restrictions were placed:
+
+_Two Tests:_
+
+  * Students who completed tests 1 and 2 within 30 days 
+  
+_Three Tests:_
+
+  * Students who completed tests 1 and 2 within 30 days
+  * Students who completed tests 2 and 3 within 30 days 
+  * Students who completed tests 1 and 3 within 60 days 
+  
+_Four Tests:_
+
+  * Students who completed tests 1 and 2 within 30 days
+  * Students who completed tests 2 and 3 within 30 days 
+  * Students who completed tests 3 and 4 within 30 days 
+  * Students who completed tests 1 and 4 within 90 days 
+  
+
+Row {.tabset}
+-----------------------------------------------------------------------
+
+### Two Tests - Time Between Tests 1/2
+
+```{r, include=FALSE}
+names(two_impact_test)
+names(three_impact_test)
+names(four_impact_test)
+
+time_react <- function(df, var) {
+    df %>% 
+      summarize(Mean = mean({{var}}),
+                SD = sd({{var}}),
+                Min = min({{var}}),
+                Max = max({{var}}),
+                Total = length({{var}})) %>% 
+      mutate_if(is.numeric, round, 2) %>% 
+      reactable(columns = list(
+        Mean = colDef(format = colFormat(separators = TRUE, suffix = " days")),
+        SD = colDef(format = colFormat(separators = TRUE, suffix = " days")),
+        Min = colDef(format = colFormat(separators = TRUE, suffix = " days")),
+        Max = colDef(format = colFormat(separators = TRUE, suffix = " days")),
+        Total = colDef(format = colFormat(separators = TRUE, suffix = " individuals"))
+      ))
+}
+
+time_hist <- function(df, x) {
+  ggplot(df, aes({{x}})) +
+  geom_histogram(fill = "#56B4E9",
+                color = "white", 
+                alpha = 0.9,
+                bins = 20) +
+    labs(x = "Number of Days",
+         y = "Number of Individuals")
+}
+```
+
+```{r, include=TRUE}
+time_react(two_impact_test, dys_btwn_tst_dts)
+```
+
+### Two Tests - Time Between Tests 1/2
+
+```{r, include=TRUE}
+ggplotly(time_hist(two_impact_test, dys_btwn_tst_dts))
+```
+
+
+Row {.tabset}
+-----------------------------------------------------------------------
+
+### Three Tests - Time Between Tests 1/2
+
+```{r, include=TRUE}
+time_react(three_impact_test, dys_btwn_tst_1_2)
+```
+
+### Three Tests - Time Between Tests 1/2
+
+```{r, include=TRUE}
+ggplotly(time_hist(three_impact_test, dys_btwn_tst_1_2))
+```
+
+
+### Three Tests - Time Between Tests 1/3
+
+```{r, include=TRUE}
+time_react(three_impact_test, dys_btwn_tst_1_3)
+```
+
+### Three Tests - Time Between Tests 1/3
+
+```{r, include=TRUE}
+ggplotly(time_hist(three_impact_test, dys_btwn_tst_1_3))
+```
+
+### Three Tests - Time Between Tests 2/3
+
+```{r, include=TRUE}
+time_react(three_impact_test, dys_btwn_tst_2_3)
+```
+
+### Three Tests - Time Between Tests 2/3
+
+```{r, include=TRUE}
+ggplotly(time_hist(three_impact_test, dys_btwn_tst_2_3))
+```
+
+
+Row {.tabset}
+-----------------------------------------------------------------------
+
+### Four Tests - Time Between Tests 1/2
+
+```{r, include=TRUE}
+time_react(four_impact_test, dys_btwn_tst_1_2)
+```
+
+### Four Tests - Time Between Tests 1/2
+
+```{r, include=TRUE}
+ggplotly(time_hist(four_impact_test, dys_btwn_tst_1_2))
+```
+
+
+### Four Tests - Time Between Tests 2/3
+
+```{r, include=TRUE}
+time_react(four_impact_test, dys_btwn_tst_2_3)
+```
+
+### Four Tests - Time Between Tests 2/3
+
+```{r, include=TRUE}
+ggplotly(time_hist(four_impact_test, dys_btwn_tst_2_3))
+```
+
+### Four Tests - Time Between Tests 3/4
+
+```{r, include=TRUE}
+time_react(four_impact_test, dys_btwn_tst_3_4)
+```
+
+### Four Tests - Time Between Tests 3/4
+
+```{r, include=TRUE}
+ggplotly(time_hist(four_impact_test, dys_btwn_tst_3_4))
+```
+
+### Four Tests - Time Between Tests 1/4
+
+```{r, include=TRUE}
+time_react(four_impact_test, dys_btwn_tst_1_4)
+```
+
+### Four Tests - Time Between Tests 1/4
+
+```{r, include=TRUE}
+ggplotly(time_hist(four_impact_test, dys_btwn_tst_1_4))
 ```
