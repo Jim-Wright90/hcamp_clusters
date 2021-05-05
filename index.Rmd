@@ -2219,6 +2219,30 @@ res_4_1 <- TukeyHSD(cluster_four_tests_aov2_1)
 
 a_4_1 <- Anova(cluster_four_tests_aov2_1, type = "III")
 
+
+four_tests_main_effect_cluster_1 <- aov(post_injury_1_score ~ symptom_cluster,
+                                      data = clusters_four_impact_test_complete)
+
+summary(four_tests_main_effect_cluster_1)
+
+four_tests_main_effect_gender_1 <- aov(post_injury_1_score ~ gender,
+                                      data = clusters_four_impact_test_complete)
+
+summary(four_tests_main_effect_gender_1)
+
+cluster_main_effect_1 <- Anova(four_tests_main_effect_cluster_1)
+
+summary(cluster_main_effect_1)
+
+gender_main_effect_1 <- Anova(four_tests_main_effect_gender_1, type = "III")
+
+summary(gender_main_effect_1)
+
+
+cluster_4_1_pwc <- TukeyHSD(four_tests_main_effect_cluster_1)
+
+gender_4_1_pwc <- TukeyHSD(four_tests_main_effect_gender_1)
+
 ```
 
 
@@ -2226,12 +2250,39 @@ a_4_1 <- Anova(cluster_four_tests_aov2_1, type = "III")
 anova_react(a_4_1)
 ```
 
-### 4 Tests Cluster PWC - Test 1
+### 4 Tests Cluster Interaction PWC - Test 1
 
 ```{r, include=TRUE}
 tidy(res_4_1) %>% 
   pwc_react()
 ```
+
+### 4 Tests - Test 1 One-Way ANOVA Main Effect Cluster
+
+```{r, include=TRUE}
+anova_react(cluster_main_effect_1)
+```
+
+### 4 Tests - Test 1 One-Way ANOVA Main Effect Cluster PWC
+
+```{r, include=TRUE}
+tidy(cluster_4_1_pwc) %>% 
+  pwc_react()
+```
+
+### 4 Tests - Test 1 One-Way ANOVA Main Effect Gender
+
+```{r, include=TRUE}
+anova_react(gender_main_effect_1)
+```
+
+### 4 Tests - Test 1 One-Way ANOVA Main Effect Gender PWC
+
+```{r, include=TRUE}
+tidy(gender_4_1_pwc) %>% 
+  pwc_react()
+```
+
 
 
 ### 4 Tests Cluster Summary - Test 2
