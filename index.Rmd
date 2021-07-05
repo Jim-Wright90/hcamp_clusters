@@ -32,12 +32,54 @@ library(remotes)
 library(profvis) 
 
 
-theme_set(theme_minimal(15) +
-            theme(legend.position = "bottom",
-                  panel.grid.major.x = element_line(color = "gray60"),
-                  panel.grid.minor.x = element_blank(),
-                  panel.grid.major.y = element_blank())
-          )
+theme_fivethirtyeight <- function(base_size = 15, base_family = "") {
+  theme_grey(base_size = base_size, base_family = base_family) %+replace%
+    theme(
+      
+      # Base elements which are not used directly but inherited by others
+      line =              element_line(colour = '#DADADA', size = 0.75, 
+                                       linetype = 1, lineend = "butt"),
+      rect =              element_rect(fill = "#F0F0F0", colour = "#F0F0F0", 
+                                       size = 0.5, linetype = 1),
+      text =              element_text(family = base_family, face = "plain",
+                                       colour = "#656565", size = base_size,
+                                       hjust = 0.5, vjust = 0.5, angle = 0, 
+                                       lineheight = 0.9),
+      
+      # Modified inheritance structure of text element
+      plot.title =        element_text(size = rel(1.5), family = '' , 
+                                       face = 'bold', hjust = -0.05, 
+                                       vjust = 1.5, colour = '#3B3B3B'),
+      axis.title.x =      element_blank(),
+      axis.title.y =      element_blank(),
+      axis.text =         element_text(),
+      
+      # Modified inheritance structure of line element
+      axis.ticks =        element_line(),
+      panel.grid.major =  element_line(),
+      panel.grid.minor =  element_blank(),
+      
+      # Modified inheritance structure of rect element
+      plot.background =   element_rect(),
+      panel.background =  element_rect(),
+      legend.key =        element_rect(colour = '#DADADA'),
+      
+      # Modifiying legend.position
+      legend.position = 'none',
+      
+      complete = TRUE
+    )
+}
+
+
+theme_set(theme_fivethirtyeight())
+
+# theme_set(theme_minimal(15) +
+#             theme(legend.position = "bottom",
+#                   panel.grid.major.x = element_line(color = "gray60"),
+#                   panel.grid.minor.x = element_blank(),
+#                   panel.grid.major.y = element_blank()) 
+#           )
 
 ```
 
@@ -68,6 +110,8 @@ three_impact_sims <- read_csv(here("data", "three_post_injury_test_impact_sims_m
 
 four_impact_sims <- read_csv(here("data", "four_post_injury_test_impact_sims_merge.csv"))
 
+baseline_dates <- read_csv(here("data", "baseline_dates.csv"))
+
 # pcss items 
 
 pcss_items <- import(here("data", "pcss_items.xlsx"),
@@ -78,8 +122,9 @@ pcss_items_data <- import(here("data", "pcss_items_data.xlsx"),
 
 pcss_cluster <- import(here("data", "cluster_scores.xlsx"),
                setclass = "tbl_df") 
-```
 
+
+```
 
 # Symptom Comparisons
 
@@ -1840,6 +1885,8 @@ tidy(res_1) %>%
 
 a_1 <- Anova(cluster_one_test_aov2, type = "III")
 
+summary(a_1)
+
 reactable(a_1)
 
 anova_react <- function(df) {
@@ -2914,6 +2961,7 @@ time_react(four_impact_test, dys_btwn_tst_3_4)
 ggplotly(time_hist(four_impact_test, dys_btwn_tst_3_4))
 ```
 
+
 ### Four Tests - Time Between Tests 1/4
 
 ```{r, include=TRUE}
@@ -2924,4 +2972,440 @@ time_react(four_impact_test, dys_btwn_tst_1_4)
 
 ```{r, include=TRUE}
 ggplotly(time_hist(four_impact_test, dys_btwn_tst_1_4))
+```
+
+
+```{r, include=FALSE}
+# create_react_time <- function(df, var) {
+#     df %>% 
+#       summarize(Mean = mean({{var}}),
+#                 SD = sd({{var}}),
+#                 Min = min({{var}}),
+#                 Max = max({{var}}),
+#                 Total = length({{var}})) %>% 
+#       mutate_if(is.numeric, round, 2) %>% 
+#       reactable(columns = list(
+#         Mean = colDef(format = colFormat(separators = TRUE, suffix = " days")),
+#         SD = colDef(format = colFormat(separators = TRUE, suffix = " days")),
+#         Min = colDef(format = colFormat(separators = TRUE, suffix = " days")),
+#         Max = colDef(format = colFormat(separators = TRUE, suffix = " days")),
+#         Total = colDef(format = colFormat(separators = TRUE, suffix = " concussions"))
+#       ))
+# }
+# 
+# #join baseline dates with impact post injury tests 
+# 
+# str(baseline_dates)
+# str(one_impact_test)
+# 
+# baseline_dates %>% 
+#   count(passport_id)
+# 
+# bl_one_impact_test <- right_join(baseline_dates, one_impact_test)
+# 
+# bl_one_impact_test_2 <- left_join(baseline_dates, one_impact_test)
+# 
+# bl_one_impact_test_3 <- bind_cols(baseline_dates, one_impact_test)
+```
+
+# Rate
+
+Sidebar {.sidebar}
+------------
+
+Row {.tabset}
+-----------------------------------------------------------------------
+
+### Two Tests Percent Decrease 
+
+```{r, include=FALSE}
+head(clusters_two_impact_test_1)
+
+two_tests_cluster_scores_join <- left_join(clusters_two_impact_test_1,
+                                           clusters_two_impact_test_2)
+
+two_tests_cluster_scores_join <- two_tests_cluster_scores_join %>% 
+  mutate(total_symptom_score_post_injury_1 = headache_migraine_cluster_score_post_injury_1 +
+           cognitive_cluster_score_post_injury_1 +
+           anxiety_mood_cluster_score_post_injury_1 +
+           ocular_motor_cluster_score_post_injury_1 +
+           vestibular_cluster_score_post_injury_1 +
+           sleep_cluster_score_post_injury_1,
+         total_symptom_score_post_injury_2 = headache_migraine_cluster_score_post_injury_2 +
+           cognitive_cluster_score_post_injury_2 +
+           anxiety_mood_cluster_score_post_injury_2 +
+           ocular_motor_cluster_score_post_injury_2 +
+           vestibular_cluster_score_post_injury_2 +
+           sleep_cluster_score_post_injury_2)
+
+two_tests_cluster_scores_means <- two_tests_cluster_scores_join %>% 
+  select(c(13:26)) %>% 
+  summarize(mean_headache_score_1 = mean(headache_migraine_cluster_score_post_injury_1),
+            mean_headache_score_2 = mean(headache_migraine_cluster_score_post_injury_2),
+            mean_cognitive_score_1 = mean(cognitive_cluster_score_post_injury_1),
+            mean_cognitive_score_2 = mean(cognitive_cluster_score_post_injury_2),
+            mean_anxiety_score_1 = mean(anxiety_mood_cluster_score_post_injury_1),
+            mean_anxiety_score_2 = mean(anxiety_mood_cluster_score_post_injury_2),
+            mean_ocular_motor_score_1 = mean(ocular_motor_cluster_score_post_injury_1),
+            mean_ocular_motor_score_2 = mean(ocular_motor_cluster_score_post_injury_2),
+            mean_vestibular_score_1 = mean(vestibular_cluster_score_post_injury_1),
+            mean_vestibular_score_2 = mean(vestibular_cluster_score_post_injury_2),
+            mean_sleep_score_1 = mean(sleep_cluster_score_post_injury_1),
+            mean_sleep_score_2 = mean(sleep_cluster_score_post_injury_2),
+            mean_total_score_1 = mean(total_symptom_score_post_injury_1),
+            mean_total_score_2 = mean(total_symptom_score_post_injury_2)) %>% 
+  mutate_if(is.numeric, ~round(., 2))
+
+two_tests_cluster_scores_percent_decrease <- two_tests_cluster_scores_means %>% 
+  mutate(perc_decrease_headache_score = (mean_headache_score_1 - mean_headache_score_2) / mean_headache_score_1 * 100,
+         perc_decrease_cognitive_score = (mean_cognitive_score_1 - mean_cognitive_score_2) / mean_cognitive_score_1 * 100,
+         perc_decrease_anxiety_score = (mean_anxiety_score_1 - mean_anxiety_score_2) / mean_anxiety_score_1 * 100,
+         perc_decrease_ocular_motor_score = (mean_ocular_motor_score_1 - mean_ocular_motor_score_2) / mean_ocular_motor_score_1 * 100,
+         perc_decrease_vestibular_score = (mean_vestibular_score_1 - mean_vestibular_score_2) / mean_vestibular_score_1 * 100,
+         perc_decrease_sleep_score = (mean_sleep_score_1 - mean_sleep_score_2) / mean_sleep_score_1 * 100,
+         perc_decrease_total_score = (mean_total_score_1 - mean_total_score_2) / mean_total_score_1 * 100) %>% 
+  mutate_if(is.numeric, ~round(., 2))
+  
+two_tests_cluster <- c("Headache-Migraine",
+                       "Cognitive",
+                       "Anxiety-Mood",
+                       "Ocular-Motor",
+                       "Vestibular",
+                       "Sleep",
+                       "Total Symptom Score")
+
+two_tests_test_one_mean <- c(3.02, 2.98, 1.91, 0.36, 2.01, 3.02, 13.31)
+two_tests_test_two_mean <- c(0.94, 0.95, 0.56, 0.10, 0.45, 0.94, 3.94)
+two_tests_percent_decrease <- c(.6887, .6812, .7068, .7222, .7761, .6887, .7040)
+
+two_tests_percent_decrease_clean <- data_frame(two_tests_cluster,
+                                               two_tests_test_one_mean,
+                                               two_tests_test_two_mean,
+                                               two_tests_percent_decrease)
+
+str(two_tests_percent_decrease_clean)
+
+two_tests_percent_decrease_tbl <- two_tests_percent_decrease_clean %>% 
+  reactable(
+    defaultColDef = colDef(align = "center"),
+    columns = list(
+      two_tests_cluster = colDef(name = "Symptom Cluster"),
+      two_tests_test_one_mean = colDef(name = "Test One Mean"),
+      two_tests_test_two_mean = colDef(name = "Test Two Mean"),
+      two_tests_percent_decrease = colDef(name = "Percent Decrease",
+                                          format = colFormat(percent = TRUE))),
+    pagination = TRUE,
+    striped = TRUE,
+    outlined = TRUE,
+    compact = TRUE,
+    highlight = TRUE,
+    bordered = TRUE
+  )
+```
+
+```{r, include=TRUE}
+two_tests_percent_decrease_tbl
+```
+
+Row {.tabset}
+-----------------------------------------------------------------------
+
+### Three Tests Percent Decrease 
+
+```{r, include=FALSE}
+head(clusters_three_impact_test_1)
+head(clusters_three_impact_test_2)
+head(clusters_three_impact_test_3)
+
+three_tests_cluster_scores_join_1 <- left_join(clusters_three_impact_test_1,
+                                           clusters_three_impact_test_2)
+
+three_tests_cluster_scores_join_all <- left_join(three_tests_cluster_scores_join_1,
+                                                  clusters_three_impact_test_3)
+
+three_tests_cluster_scores_join_all <- three_tests_cluster_scores_join_all %>% 
+  mutate(total_symptom_score_post_injury_1 = headache_migraine_cluster_score_post_injury_1 +
+           cognitive_cluster_score_post_injury_1 +
+           anxiety_mood_cluster_score_post_injury_1 +
+           ocular_motor_cluster_score_post_injury_1 +
+           vestibular_cluster_score_post_injury_1 +
+           sleep_cluster_score_post_injury_1,
+         total_symptom_score_post_injury_2 = headache_migraine_cluster_score_post_injury_2 +
+           cognitive_cluster_score_post_injury_2 +
+           anxiety_mood_cluster_score_post_injury_2 +
+           ocular_motor_cluster_score_post_injury_2 +
+           vestibular_cluster_score_post_injury_2 +
+           sleep_cluster_score_post_injury_2,
+        total_symptom_score_post_injury_3 = headache_migraine_cluster_score_post_injury_3 +
+           cognitive_cluster_score_post_injury_3 +
+           anxiety_mood_cluster_score_post_injury_3 +
+           ocular_motor_cluster_score_post_injury_3 +
+           vestibular_cluster_score_post_injury_3 +
+           sleep_cluster_score_post_injury_3)
+
+three_tests_cluster_scores_means <- three_tests_cluster_scores_join_all %>% 
+  select(c(17:37)) %>% 
+  summarize(mean_headache_score_1 = mean(headache_migraine_cluster_score_post_injury_1),
+            mean_headache_score_2 = mean(headache_migraine_cluster_score_post_injury_2),
+            mean_headache_score_3 = mean(headache_migraine_cluster_score_post_injury_3),
+            mean_cognitive_score_1 = mean(cognitive_cluster_score_post_injury_1),
+            mean_cognitive_score_2 = mean(cognitive_cluster_score_post_injury_2),
+            mean_cognitive_score_3 = mean(cognitive_cluster_score_post_injury_3),
+            mean_anxiety_score_1 = mean(anxiety_mood_cluster_score_post_injury_1),
+            mean_anxiety_score_2 = mean(anxiety_mood_cluster_score_post_injury_2),
+            mean_anxiety_score_3 = mean(anxiety_mood_cluster_score_post_injury_3),
+            mean_ocular_motor_score_1 = mean(ocular_motor_cluster_score_post_injury_1),
+            mean_ocular_motor_score_2 = mean(ocular_motor_cluster_score_post_injury_2),
+            mean_ocular_motor_score_3 = mean(ocular_motor_cluster_score_post_injury_3),
+            mean_vestibular_score_1 = mean(vestibular_cluster_score_post_injury_1),
+            mean_vestibular_score_2 = mean(vestibular_cluster_score_post_injury_2),
+            mean_vestibular_score_3 = mean(vestibular_cluster_score_post_injury_3),
+            mean_sleep_score_1 = mean(sleep_cluster_score_post_injury_1),
+            mean_sleep_score_2 = mean(sleep_cluster_score_post_injury_2),
+            mean_sleep_score_3 = mean(sleep_cluster_score_post_injury_3),
+            mean_total_score_1 = mean(total_symptom_score_post_injury_1),
+            mean_total_score_2 = mean(total_symptom_score_post_injury_2),
+            mean_total_score_3 = mean(total_symptom_score_post_injury_3)) %>% 
+  mutate_if(is.numeric, ~round(., 2))
+
+three_tests_cluster_scores_percent_decrease <- three_tests_cluster_scores_means %>% 
+  mutate(perc_decrease_headache_score_1_2 = (mean_headache_score_1 - mean_headache_score_2) / mean_headache_score_1 * 100,
+         perc_decrease_headache_score_2_3 = (mean_headache_score_2 - mean_headache_score_3) / mean_headache_score_2 * 100,
+         perc_decrease_headache_score_1_3 = (mean_headache_score_1 - mean_headache_score_3) / mean_headache_score_1 * 100,
+         perc_decrease_cognitive_score_1_2 = (mean_cognitive_score_1 - mean_cognitive_score_2) / mean_cognitive_score_1 * 100,
+         perc_decrease_cognitive_score_2_3 = (mean_cognitive_score_2 - mean_cognitive_score_3) / mean_cognitive_score_2 * 100,
+         perc_decrease_cognitive_score_1_3 = (mean_cognitive_score_1 - mean_cognitive_score_3) / mean_cognitive_score_1 * 100,
+         perc_decrease_anxiety_score_1_2 = (mean_anxiety_score_1 - mean_anxiety_score_2) / mean_anxiety_score_1 * 100,
+         perc_decrease_anxiety_score_2_3 = (mean_anxiety_score_2 - mean_anxiety_score_3) / mean_anxiety_score_2 * 100,
+         perc_decrease_anxiety_score_1_3 = (mean_anxiety_score_1 - mean_anxiety_score_3) / mean_anxiety_score_1 * 100,
+         perc_decrease_ocular_motor_score_1_2 = (mean_ocular_motor_score_1 - mean_ocular_motor_score_2) / mean_ocular_motor_score_1 * 100,
+         perc_decrease_ocular_motor_score_2_3 = (mean_ocular_motor_score_2 - mean_ocular_motor_score_3) / mean_ocular_motor_score_2 * 100,
+         perc_decrease_ocular_motor_score_1_3 = (mean_ocular_motor_score_1 - mean_ocular_motor_score_3) / mean_ocular_motor_score_1 * 100,
+         perc_decrease_vestibular_score_1_2 = (mean_vestibular_score_1 - mean_vestibular_score_2) / mean_vestibular_score_1 * 100,
+         perc_decrease_vestibular_score_2_3 = (mean_vestibular_score_2 - mean_vestibular_score_3) / mean_vestibular_score_2 * 100,
+         perc_decrease_vestibular_score_1_3 = (mean_vestibular_score_1 - mean_vestibular_score_3) / mean_vestibular_score_1 * 100,
+         perc_decrease_sleep_score_1_2 = (mean_sleep_score_1 - mean_sleep_score_2) / mean_sleep_score_1 * 100,
+         perc_decrease_sleep_score_2_3 = (mean_sleep_score_2 - mean_sleep_score_3) / mean_sleep_score_2 * 100,
+         perc_decrease_sleep_score_1_3 = (mean_sleep_score_1 - mean_sleep_score_3) / mean_sleep_score_1 * 100,
+         perc_decrease_total_score_1_2 = (mean_total_score_1 - mean_total_score_2) / mean_total_score_1 * 100,
+         perc_decrease_total_score_2_3 = (mean_total_score_2 - mean_total_score_3) / mean_total_score_2 * 100,
+         perc_decrease_total_score_1_3 = (mean_total_score_1 - mean_total_score_3) / mean_total_score_1 * 100) %>% 
+  mutate_if(is.numeric, ~round(., 2))
+  
+three_tests_cluster <- c("Headache-Migraine",
+                       "Cognitive",
+                       "Anxiety-Mood",
+                       "Ocular-Motor",
+                       "Vestibular",
+                       "Sleep",
+                       "Total Symptom Score")
+
+three_tests_test_one_mean <- c(3.55, 3.68, 2.32, 0.45, 2.48, 3.62, 16.09)
+three_tests_test_two_mean <- c(1.34, 1.39, 0.76, 0.13, 0.68, 1.37, 5.68)
+three_tests_test_three_mean <- c(0.57, 0.63, 0.39, 0.06, 0.26, 0.59, 2.49)
+three_tests_percent_decrease_1_2 <- c(.6225, .6223, .6724, .7111, .7258, .6215, .6470)
+three_tests_percent_decrease_2_3 <- c(.5746, .5468, .4868, .5385, .6176, .5693, .5616)
+three_tests_percent_decrease_1_3 <- c(.8394, .8288, .8319, .8667, .8952, .8370, .8452)
+
+three_tests_percent_decrease_clean <- data_frame(three_tests_cluster,
+                                               three_tests_test_one_mean,
+                                               three_tests_test_two_mean,
+                                               three_tests_test_three_mean,
+                                               three_tests_percent_decrease_1_2,
+                                               three_tests_percent_decrease_2_3,
+                                               three_tests_percent_decrease_1_3)
+
+
+three_tests_percent_decrease_tbl <- three_tests_percent_decrease_clean %>% 
+  reactable(
+    defaultColDef = colDef(align = "center"),
+    columns = list(
+      three_tests_cluster = colDef(name = "Symptom Cluster"),
+      three_tests_test_one_mean = colDef(name = "Test One Mean"),
+      three_tests_test_two_mean = colDef(name = "Test Two Mean"),
+      three_tests_test_three_mean = colDef(name = "Test Three Mean"),
+      three_tests_percent_decrease_1_2 = colDef(name = "Tests 1 to 2 Percent Decrease",
+                                          format = colFormat(percent = TRUE)),
+      three_tests_percent_decrease_2_3 = colDef(name = "Tests 2 to 3 Percent Decrease",
+                                          format = colFormat(percent = TRUE)),
+      three_tests_percent_decrease_1_3 = colDef(name = "Tests 1 to 3 Percent Decrease",
+                                          format = colFormat(percent = TRUE))),
+    pagination = TRUE,
+    striped = TRUE,
+    outlined = TRUE,
+    compact = TRUE,
+    highlight = TRUE,
+    bordered = TRUE
+  )
+```
+
+```{r, include=TRUE}
+three_tests_percent_decrease_tbl
+```
+
+Row {.tabset}
+-----------------------------------------------------------------------
+
+### Four Tests Percent Decrease 
+
+```{r, include=FALSE}
+head(clusters_four_impact_test_1)
+head(clusters_four_impact_test_2)
+head(clusters_four_impact_test_3)
+head(clusters_four_impact_test_4)
+
+four_tests_cluster_scores_join_1 <- left_join(clusters_four_impact_test_1,
+                                           clusters_four_impact_test_2)
+
+four_tests_cluster_scores_join_2 <- left_join(four_tests_cluster_scores_join_1,
+                                           clusters_four_impact_test_3)
+
+four_tests_cluster_scores_join_all <- left_join(four_tests_cluster_scores_join_2,
+                                                  clusters_four_impact_test_4)
+
+four_tests_cluster_scores_join_all <- four_tests_cluster_scores_join_all %>% 
+  mutate(total_symptom_score_post_injury_1 = headache_migraine_cluster_score_post_injury_1 +
+           cognitive_cluster_score_post_injury_1 +
+           anxiety_mood_cluster_score_post_injury_1 +
+           ocular_motor_cluster_score_post_injury_1 +
+           vestibular_cluster_score_post_injury_1 +
+           sleep_cluster_score_post_injury_1,
+         total_symptom_score_post_injury_2 = headache_migraine_cluster_score_post_injury_2 +
+           cognitive_cluster_score_post_injury_2 +
+           anxiety_mood_cluster_score_post_injury_2 +
+           ocular_motor_cluster_score_post_injury_2 +
+           vestibular_cluster_score_post_injury_2 +
+           sleep_cluster_score_post_injury_2,
+        total_symptom_score_post_injury_3 = headache_migraine_cluster_score_post_injury_3 +
+           cognitive_cluster_score_post_injury_3 +
+           anxiety_mood_cluster_score_post_injury_3 +
+           ocular_motor_cluster_score_post_injury_3 +
+           vestibular_cluster_score_post_injury_3 +
+           sleep_cluster_score_post_injury_3,
+        total_symptom_score_post_injury_4 = headache_migraine_cluster_score_post_injury_4 +
+           cognitive_cluster_score_post_injury_4 +
+           anxiety_mood_cluster_score_post_injury_4 +
+           ocular_motor_cluster_score_post_injury_4 +
+           vestibular_cluster_score_post_injury_4 +
+           sleep_cluster_score_post_injury_4)
+
+four_tests_cluster_scores_means <- four_tests_cluster_scores_join_all %>% 
+  select(c(21:48)) %>% 
+  summarize(mean_headache_score_1 = mean(headache_migraine_cluster_score_post_injury_1),
+            mean_headache_score_2 = mean(headache_migraine_cluster_score_post_injury_2),
+            mean_headache_score_3 = mean(headache_migraine_cluster_score_post_injury_3),
+            mean_headache_score_4 = mean(headache_migraine_cluster_score_post_injury_4),
+            mean_cognitive_score_1 = mean(cognitive_cluster_score_post_injury_1),
+            mean_cognitive_score_2 = mean(cognitive_cluster_score_post_injury_2),
+            mean_cognitive_score_3 = mean(cognitive_cluster_score_post_injury_3),
+            mean_cognitive_score_4 = mean(cognitive_cluster_score_post_injury_4),
+            mean_anxiety_score_1 = mean(anxiety_mood_cluster_score_post_injury_1),
+            mean_anxiety_score_2 = mean(anxiety_mood_cluster_score_post_injury_2),
+            mean_anxiety_score_3 = mean(anxiety_mood_cluster_score_post_injury_3),
+            mean_anxiety_score_4 = mean(anxiety_mood_cluster_score_post_injury_4),
+            mean_ocular_motor_score_1 = mean(ocular_motor_cluster_score_post_injury_1),
+            mean_ocular_motor_score_2 = mean(ocular_motor_cluster_score_post_injury_2),
+            mean_ocular_motor_score_3 = mean(ocular_motor_cluster_score_post_injury_3),
+            mean_ocular_motor_score_4 = mean(ocular_motor_cluster_score_post_injury_4),
+            mean_vestibular_score_1 = mean(vestibular_cluster_score_post_injury_1),
+            mean_vestibular_score_2 = mean(vestibular_cluster_score_post_injury_2),
+            mean_vestibular_score_3 = mean(vestibular_cluster_score_post_injury_3),
+            mean_vestibular_score_4 = mean(vestibular_cluster_score_post_injury_4),
+            mean_sleep_score_1 = mean(sleep_cluster_score_post_injury_1),
+            mean_sleep_score_2 = mean(sleep_cluster_score_post_injury_2),
+            mean_sleep_score_3 = mean(sleep_cluster_score_post_injury_3),
+            mean_sleep_score_4 = mean(sleep_cluster_score_post_injury_4),
+            mean_total_score_1 = mean(total_symptom_score_post_injury_1),
+            mean_total_score_2 = mean(total_symptom_score_post_injury_2),
+            mean_total_score_3 = mean(total_symptom_score_post_injury_3),
+            mean_total_score_4 = mean(total_symptom_score_post_injury_4)) %>% 
+  mutate_if(is.numeric, ~round(., 2))
+
+four_tests_cluster_scores_percent_decrease <- four_tests_cluster_scores_means %>% 
+  mutate(perc_decrease_headache_score_1_2 = (mean_headache_score_1 - mean_headache_score_2) / mean_headache_score_1 * 100,
+         perc_decrease_headache_score_2_3 = (mean_headache_score_2 - mean_headache_score_3) / mean_headache_score_2 * 100,
+         perc_decrease_headache_score_3_4 = (mean_headache_score_3 - mean_headache_score_4) / mean_headache_score_3 * 100,
+         perc_decrease_headache_score_1_4 = (mean_headache_score_1 - mean_headache_score_4) / mean_headache_score_1 * 100,
+         perc_decrease_cognitive_score_1_2 = (mean_cognitive_score_1 - mean_cognitive_score_2) / mean_cognitive_score_1 * 100,
+         perc_decrease_cognitive_score_2_3 = (mean_cognitive_score_2 - mean_cognitive_score_3) / mean_cognitive_score_2 * 100,
+         perc_decrease_cognitive_score_3_4 = (mean_cognitive_score_3 - mean_cognitive_score_4) / mean_cognitive_score_3 * 100,
+         perc_decrease_cognitive_score_1_4 = (mean_cognitive_score_1 - mean_cognitive_score_4) / mean_cognitive_score_1 * 100,
+         perc_decrease_anxiety_score_1_2 = (mean_anxiety_score_1 - mean_anxiety_score_2) / mean_anxiety_score_1 * 100,
+         perc_decrease_anxiety_score_2_3 = (mean_anxiety_score_2 - mean_anxiety_score_3) / mean_anxiety_score_2 * 100,
+         perc_decrease_anxiety_score_3_4 = (mean_anxiety_score_3 - mean_anxiety_score_4) / mean_anxiety_score_3 * 100,
+         perc_decrease_anxiety_score_1_4 = (mean_anxiety_score_1 - mean_anxiety_score_4) / mean_anxiety_score_1 * 100,
+         perc_decrease_ocular_motor_score_1_2 = (mean_ocular_motor_score_1 - mean_ocular_motor_score_2) / mean_ocular_motor_score_1 * 100,
+         perc_decrease_ocular_motor_score_2_3 = (mean_ocular_motor_score_2 - mean_ocular_motor_score_3) / mean_ocular_motor_score_2 * 100,
+         perc_decrease_ocular_motor_score_3_4 = (mean_ocular_motor_score_3 - mean_ocular_motor_score_4) / mean_ocular_motor_score_3 * 100,
+         perc_decrease_ocular_motor_score_1_4 = (mean_ocular_motor_score_1 - mean_ocular_motor_score_4) / mean_ocular_motor_score_1 * 100,
+         perc_decrease_vestibular_score_1_2 = (mean_vestibular_score_1 - mean_vestibular_score_2) / mean_vestibular_score_1 * 100,
+         perc_decrease_vestibular_score_2_3 = (mean_vestibular_score_2 - mean_vestibular_score_3) / mean_vestibular_score_2 * 100,
+         perc_decrease_vestibular_score_3_4 = (mean_vestibular_score_3 - mean_vestibular_score_4) / mean_vestibular_score_3 * 100,
+         perc_decrease_vestibular_score_1_4 = (mean_vestibular_score_1 - mean_vestibular_score_4) / mean_vestibular_score_1 * 100,
+         perc_decrease_sleep_score_1_2 = (mean_sleep_score_1 - mean_sleep_score_2) / mean_sleep_score_1 * 100,
+         perc_decrease_sleep_score_2_3 = (mean_sleep_score_2 - mean_sleep_score_3) / mean_sleep_score_2 * 100,
+         perc_decrease_sleep_score_3_4 = (mean_sleep_score_3 - mean_sleep_score_4) / mean_sleep_score_3 * 100,
+         perc_decrease_sleep_score_1_4 = (mean_sleep_score_1 - mean_sleep_score_4) / mean_sleep_score_1 * 100,
+         perc_decrease_total_score_1_2 = (mean_total_score_1 - mean_total_score_2) / mean_total_score_1 * 100,
+         perc_decrease_total_score_2_3 = (mean_total_score_2 - mean_total_score_3) / mean_total_score_2 * 100,
+         perc_decrease_total_score_3_4 = (mean_total_score_3 - mean_total_score_4) / mean_total_score_3 * 100,
+         perc_decrease_total_score_1_4 = (mean_total_score_1 - mean_total_score_4) / mean_total_score_1 * 100) %>% 
+  mutate_if(is.numeric, ~round(., 2))
+  
+four_tests_cluster <- c("Headache-Migraine",
+                       "Cognitive",
+                       "Anxiety-Mood",
+                       "Ocular-Motor",
+                       "Vestibular",
+                       "Sleep",
+                       "Total Symptom Score")
+
+four_tests_test_one_mean <- c(4.04, 4.31, 2.70, 0.56, 3.06, 4.28, 18.95)
+four_tests_test_two_mean <- c(1.83, 2.08, 1.07, 0.18, 1.03, 1.98, 8.17)
+four_tests_test_three_mean <- c(0.99, 1.12, 0.63, 0.09, 0.48, 0.98, 4.28)
+four_tests_test_four_mean <- c(0.60, 0.68, 0.43, 0.07, 0.29, 0.54, 2.62)
+four_tests_percent_decrease_1_2 <- c(.5470, .5174, .6037, .6786, .6634, .5374, .5689)
+four_tests_percent_decrease_2_3 <- c(.4590, .4615, .4112, .5000, .5340, .5051, .4761)
+four_tests_percent_decrease_3_4 <- c(.3939, .3929, .3175, .2222, .3958, .4490, .3879)
+four_tests_percent_decrease_1_4 <- c(.8515, .8422, .8407, .8750, .9052, .8738, .8617)
+
+four_tests_percent_decrease_clean <- data_frame(four_tests_cluster,
+                                               four_tests_test_one_mean,
+                                               four_tests_test_two_mean,
+                                               four_tests_test_three_mean,
+                                               four_tests_test_four_mean,
+                                               four_tests_percent_decrease_1_2,
+                                               four_tests_percent_decrease_2_3,
+                                               four_tests_percent_decrease_3_4,
+                                               four_tests_percent_decrease_1_4)
+
+
+four_tests_percent_decrease_tbl <- four_tests_percent_decrease_clean %>% 
+  reactable(
+    defaultColDef = colDef(align = "center"),
+    columns = list(
+      four_tests_cluster = colDef(name = "Symptom Cluster"),
+      four_tests_test_one_mean = colDef(name = "Test One Mean"),
+      four_tests_test_two_mean = colDef(name = "Test Two Mean"),
+      four_tests_test_three_mean = colDef(name = "Test Three Mean"),
+      four_tests_test_four_mean = colDef(name = "Test Four Mean"),
+      four_tests_percent_decrease_1_2 = colDef(name = "Tests 1 to 2 Percent Decrease",
+                                          format = colFormat(percent = TRUE)),
+      four_tests_percent_decrease_2_3 = colDef(name = "Tests 2 to 3 Percent Decrease",
+                                          format = colFormat(percent = TRUE)),
+      four_tests_percent_decrease_3_4 = colDef(name = "Tests 3 to 4 Percent Decrease",
+                                          format = colFormat(percent = TRUE)),
+      four_tests_percent_decrease_1_4 = colDef(name = "Tests 1 to 4 Percent Decrease",
+                                          format = colFormat(percent = TRUE))),
+    pagination = TRUE,
+    striped = TRUE,
+    outlined = TRUE,
+    compact = TRUE,
+    highlight = TRUE,
+    bordered = TRUE
+  )
+```
+
+```{r, include=TRUE}
+four_tests_percent_decrease_tbl
 ```
