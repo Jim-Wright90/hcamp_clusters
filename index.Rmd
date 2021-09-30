@@ -92,13 +92,25 @@ sims_concussion_data <- sims_concussion_data %>%
 
 #impact data only
 
-one_impact_test <- read_csv(here("data", "one_post_injury_impact_test.csv"))
+one_i_test <- read_csv(here("data", "one_impact_pcss_test.csv"))
 
-two_impact_test <- read_csv(here("data", "two_post_injury_impact_test.csv"))
+one_impact_test <- one_i_test %>% 
+  select(-c(5, 6))
 
-three_impact_test <- read_csv(here("data", "three_post_injury_impact_test.csv"))
+two_i_test <- read_csv(here("data", "two_impact_pcss_tests.csv"))
 
-four_impact_test <- read_csv(here("data", "four_post_injury_impact_test.csv"))
+two_impact_test <- two_i_test %>% 
+  select(-c(6, 7))
+
+three_i_test <- read_csv(here("data", "three_impact_pcss_tests.csv"))
+
+three_impact_test <- three_i_test %>% 
+  select(-c(7, 8))
+
+four_i_test <- read_csv(here("data", "four_impact_pcss_tests.csv"))
+
+four_impact_test <- four_i_test %>% 
+  select(-c(8, 9))
 
 # impact sims merge data
 
@@ -514,9 +526,9 @@ Sidebar {.sidebar}
 
 Symptom Cluster Potential Symptom Severity Range:
 
-  1. Headache-Migraine Cluster: 0 - 18 (3 symptoms)
+  1. Headache-Migraine Cluster: 0 - 24 (4 symptoms)
   2. Cognitive Cluster: 0 - 24 (4 symptoms)
-  3. Anxiety-Mood Cluster: 0 - 30 (5 symptoms)
+  3. Anxiety-Mood Cluster: 0 - 24 (4 symptoms)
   4. Ocular-Motor Cluster: 0 - 6 (1 symptom)
   5. Vestibular Cluster: 0 - 24 (4 symptoms)
   6. Sleep Cluster: 0 - 30 (5 symptoms)
@@ -602,7 +614,7 @@ Row {.tabset}
 ```{r, include=FALSE}
 clusters_one_impact_test <- one_impact_test %>% 
   select(c(1:8, 32:37)) %>% 
-  mutate(X1 = as.character(X1),
+  mutate(#X1 = as.character(X1),
          row = as.character(row),
          age = as.character(age))
 
@@ -779,7 +791,7 @@ Row {.tabset}
 
 clusters_two_impact_test_1 <- two_impact_test %>% 
   select(c(1:12, contains("_post_injury_1"))) %>% 
-    mutate(X1 = as.character(X1),
+    mutate(#X1 = as.character(X1),
          row = as.character(row),
          age_post_injury_1 = as.character(age_post_injury_1),
          age_post_injury_2 = as.character(age_post_injury_2))
@@ -811,7 +823,7 @@ clusters_two_impact_test_1_long <- clusters_two_impact_test_1_scaled %>%
 
 clusters_two_impact_test_2 <- two_impact_test %>% 
   select(c(1:12, contains("_post_injury_2"))) %>% 
-    mutate(X1 = as.character(X1),
+    mutate(#X1 = as.character(X1),
          row = as.character(row),
          age_post_injury_1 = as.character(age_post_injury_1),
          age_post_injury_2 = as.character(age_post_injury_2))
@@ -950,7 +962,7 @@ Row {.tabset}
 
 clusters_three_impact_test_1 <- three_impact_test %>% 
   select(c(1:16, contains("_post_injury_1"))) %>% 
-    mutate(X1 = as.character(X1),
+    mutate(#X1 = as.character(X1),
          row = as.character(row),
          age_post_injury_1 = as.character(age_post_injury_1),
          age_post_injury_2 = as.character(age_post_injury_2),
@@ -982,7 +994,7 @@ clusters_three_impact_test_1_long <- clusters_three_impact_test_1_scaled %>%
 
 clusters_three_impact_test_2 <- three_impact_test %>% 
   select(c(1:16, contains("_post_injury_2"))) %>% 
-    mutate(X1 = as.character(X1),
+    mutate(#X1 = as.character(X1),
          row = as.character(row),
          age_post_injury_1 = as.character(age_post_injury_1),
          age_post_injury_2 = as.character(age_post_injury_2),
@@ -1014,7 +1026,7 @@ clusters_three_impact_test_2_long <- clusters_three_impact_test_2_scaled %>%
 
 clusters_three_impact_test_3 <- three_impact_test %>% 
   select(c(1:16, contains("_post_injury_3"))) %>% 
-    mutate(X1 = as.character(X1),
+    mutate(#X1 = as.character(X1),
          row = as.character(row),
          age_post_injury_1 = as.character(age_post_injury_1),
          age_post_injury_2 = as.character(age_post_injury_2),
@@ -1205,7 +1217,7 @@ Row {.tabset}
 
 clusters_four_impact_test_1 <- four_impact_test %>% 
   select(c(1:20, contains("_post_injury_1"))) %>% 
-    mutate(X1 = as.character(X1),
+    mutate(#X1 = as.character(X1),
          row = as.character(row),
          age_post_injury_1 = as.character(age_post_injury_1),
          age_post_injury_2 = as.character(age_post_injury_2),
@@ -1237,7 +1249,7 @@ clusters_four_impact_test_1_long <- clusters_four_impact_test_1_scaled %>%
 
 clusters_four_impact_test_2 <- four_impact_test %>% 
   select(c(1:20, contains("_post_injury_2"))) %>% 
-    mutate(X1 = as.character(X1),
+    mutate(#X1 = as.character(X1),
          row = as.character(row),
          age_post_injury_1 = as.character(age_post_injury_1),
          age_post_injury_2 = as.character(age_post_injury_2),
@@ -1269,7 +1281,7 @@ clusters_four_impact_test_2_long <- clusters_four_impact_test_2_scaled %>%
 
 clusters_four_impact_test_3 <- four_impact_test %>% 
   select(c(1:20, contains("_post_injury_3"))) %>% 
-    mutate(X1 = as.character(X1),
+    mutate(#X1 = as.character(X1),
          row = as.character(row),
          age_post_injury_1 = as.character(age_post_injury_1),
          age_post_injury_2 = as.character(age_post_injury_2),
@@ -1302,7 +1314,7 @@ clusters_four_impact_test_3_long <- clusters_four_impact_test_3_scaled %>%
 
 clusters_four_impact_test_4 <- four_impact_test %>% 
   select(c(1:20, contains("_post_injury_4"))) %>% 
-    mutate(X1 = as.character(X1),
+    mutate(#X1 = as.character(X1),
          row = as.character(row),
          age_post_injury_1 = as.character(age_post_injury_1),
          age_post_injury_2 = as.character(age_post_injury_2),
