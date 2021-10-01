@@ -653,13 +653,19 @@ str(clusters_one_impact_test_scaled)
 
 clusters_one_impact_test_scaled_long <- clusters_one_impact_test_scaled %>% 
     pivot_longer(
-    cols = c(9:14),
+    cols = c(10:15),
     names_to = "symptom_cluster",
     values_to = "post_injury_1_score",
     names_pattern = "(.*)_score_post_injury_1"
   ) 
 
-
+clusters_one_impact_test_long <- clusters_one_impact_test %>% 
+    pivot_longer(
+    cols = c(9:14),
+    names_to = "symptom_cluster",
+    values_to = "post_injury_1_score",
+    names_pattern = "(.*)_score_post_injury_1"
+  ) 
 
 str(clusters_one_impact_test_scaled_long)
 ```
@@ -814,7 +820,7 @@ str(clusters_two_impact_test_1_scaled)
 
 clusters_two_impact_test_1_long <- clusters_two_impact_test_1_scaled %>% 
     pivot_longer(
-    cols = c(13:18),
+    cols = c(14:19),
     names_to = "symptom_cluster",
     values_to = "post_injury_1_score",
     names_pattern = "(.*)_score_post_injury_1"
@@ -846,7 +852,7 @@ str(clusters_two_impact_test_2_scaled)
 
 clusters_two_impact_test_2_long <- clusters_two_impact_test_2_scaled %>% 
     pivot_longer(
-    cols = c(13:18),
+    cols = c(14:19),
     names_to = "symptom_cluster",
     values_to = "post_injury_2_score",
     names_pattern = "(.*)_score_post_injury_2"
@@ -985,7 +991,7 @@ str(clusters_three_impact_test_1_scaled)
 
 clusters_three_impact_test_1_long <- clusters_three_impact_test_1_scaled %>% 
     pivot_longer(
-    cols = c(17:22),
+    cols = c(18:23),
     names_to = "symptom_cluster",
     values_to = "post_injury_1_score",
     names_pattern = "(.*)_score_post_injury_1"
@@ -1017,7 +1023,7 @@ str(clusters_three_impact_test_2_scaled)
 
 clusters_three_impact_test_2_long <- clusters_three_impact_test_2_scaled %>% 
     pivot_longer(
-    cols = c(17:22),
+    cols = c(18:23),
     names_to = "symptom_cluster",
     values_to = "post_injury_2_score",
     names_pattern = "(.*)_score_post_injury_2"
@@ -1049,7 +1055,7 @@ str(clusters_three_impact_test_3_scaled)
 
 clusters_three_impact_test_3_long <- clusters_three_impact_test_3_scaled %>% 
     pivot_longer(
-    cols = c(17:22),
+    cols = c(18:23),
     names_to = "symptom_cluster",
     values_to = "post_injury_3_score",
     names_pattern = "(.*)_score_post_injury_3"
@@ -1241,7 +1247,7 @@ str(clusters_four_impact_test_1_scaled)
 
 clusters_four_impact_test_1_long <- clusters_four_impact_test_1_scaled %>% 
     pivot_longer(
-    cols = c(21:26),
+    cols = c(22:27),
     names_to = "symptom_cluster",
     values_to = "post_injury_1_score",
     names_pattern = "(.*)_score_post_injury_1"
@@ -1273,7 +1279,7 @@ str(clusters_four_impact_test_2_scaled)
 
 clusters_four_impact_test_2_long <- clusters_four_impact_test_2_scaled %>% 
     pivot_longer(
-    cols = c(21:26),
+    cols = c(22:27),
     names_to = "symptom_cluster",
     values_to = "post_injury_2_score",
     names_pattern = "(.*)_score_post_injury_2"
@@ -1305,7 +1311,7 @@ str(clusters_four_impact_test_3_scaled)
 
 clusters_four_impact_test_3_long <- clusters_four_impact_test_3_scaled %>% 
     pivot_longer(
-    cols = c(21:26),
+    cols = c(22:27),
     names_to = "symptom_cluster",
     values_to = "post_injury_3_score",
     names_pattern = "(.*)_score_post_injury_3"
@@ -1338,7 +1344,7 @@ str(clusters_four_impact_test_4_scaled)
 
 clusters_four_impact_test_4_long <- clusters_four_impact_test_4_scaled %>% 
     pivot_longer(
-    cols = c(21:26),
+    cols = c(22:27),
     names_to = "symptom_cluster",
     values_to = "post_injury_4_score",
     names_pattern = "(.*)_score_post_injury_4"
@@ -1828,6 +1834,16 @@ scaled_cluster_gender_tbl(clusters_one_impact_test_scaled_long,
                           post_injury_1_score)
 ```
 
+### Non-Normalized Summary
+
+```{r, include=TRUE}
+scaled_cluster_gender_tbl(clusters_one_impact_test_long,
+                          gender,
+                          symptom_cluster,
+                          post_injury_1_score)
+```
+
+
 ### 1 Test Cluster Boxplot 
 
 ```{r, include=FALSE}
@@ -1957,6 +1973,15 @@ str(clusters_two_impact_test_complete)
 
 ```{r, include=TRUE}
 scaled_cluster_gender_tbl(clusters_two_impact_test_complete,
+                          gender,
+                          symptom_cluster,
+                          post_injury_1_score)
+```
+
+### Non-Normalized Summary
+
+```{r, include=TRUE}
+scaled_cluster_gender_tbl(clusters_two_impact_test_1_long,
                           gender,
                           symptom_cluster,
                           post_injury_1_score)
@@ -3420,4 +3445,196 @@ four_tests_percent_decrease_tbl <- four_tests_percent_decrease_clean %>%
 
 ```{r, include=TRUE}
 four_tests_percent_decrease_tbl
+```
+
+Row {.tabset}
+-----------------------------------------------------------------------
+
+### Two Tests Non-Normalized Test 1 Summary 
+
+```{r, include=FALSE}
+clusters_two_impact_test_1
+
+two_clusters_test_1 <- clusters_two_impact_test_1 %>% 
+  pivot_longer(
+    cols = c(13:18),
+    names_to = "symptom_cluster",
+    values_to = "post_injury_1_score",
+    names_pattern = "(.*)_score_post_injury_1"
+  )
+```
+
+```{r, include=TRUE}
+scaled_cluster_gender_tbl(two_clusters_test_1,
+                          gender,
+                          symptom_cluster,
+                          post_injury_1_score)
+```
+
+### Two Tests Non-Normalized Test 2 Summary 
+
+```{r, include=FALSE}
+
+two_clusters_test_2 <- clusters_two_impact_test_2 %>% 
+  pivot_longer(
+    cols = c(13:18),
+    names_to = "symptom_cluster",
+    values_to = "post_injury_2_score",
+    names_pattern = "(.*)_score_post_injury_2"
+  )
+```
+
+```{r, include=TRUE}
+scaled_cluster_gender_tbl(two_clusters_test_2,
+                          gender,
+                          symptom_cluster,
+                          post_injury_2_score)
+```
+
+
+Row {.tabset}
+-----------------------------------------------------------------------
+
+### Three Tests Non-Normalized Test 1 Summary 
+
+```{r, include=FALSE}
+
+three_clusters_test_1 <- clusters_three_impact_test_1 %>% 
+  pivot_longer(
+    cols = c(17:22),
+    names_to = "symptom_cluster",
+    values_to = "post_injury_1_score",
+    names_pattern = "(.*)_score_post_injury_1"
+  )
+```
+
+```{r, include=TRUE}
+scaled_cluster_gender_tbl(three_clusters_test_1,
+                          gender,
+                          symptom_cluster,
+                          post_injury_1_score)
+```
+
+### Three Tests Non-Normalized Test 2 Summary 
+
+```{r, include=FALSE}
+
+three_clusters_test_2 <- clusters_three_impact_test_2 %>% 
+  pivot_longer(
+    cols = c(17:22),
+    names_to = "symptom_cluster",
+    values_to = "post_injury_2_score",
+    names_pattern = "(.*)_score_post_injury_2"
+  )
+```
+
+```{r, include=TRUE}
+scaled_cluster_gender_tbl(three_clusters_test_2,
+                          gender,
+                          symptom_cluster,
+                          post_injury_2_score)
+```
+
+### Three Tests Non-Normalized Test 3 Summary 
+
+```{r, include=FALSE}
+
+three_clusters_test_3 <- clusters_three_impact_test_3 %>% 
+  pivot_longer(
+    cols = c(17:22),
+    names_to = "symptom_cluster",
+    values_to = "post_injury_3_score",
+    names_pattern = "(.*)_score_post_injury_3"
+  )
+```
+
+```{r, include=TRUE}
+scaled_cluster_gender_tbl(three_clusters_test_3,
+                          gender,
+                          symptom_cluster,
+                          post_injury_3_score)
+```
+
+
+Row {.tabset}
+-----------------------------------------------------------------------
+
+### Four Tests Non-Normalized Test 1 Summary 
+
+```{r, include=FALSE}
+
+
+
+four_clusters_test_1 <- clusters_four_impact_test_1 %>% 
+  pivot_longer(
+    cols = c(21:26),
+    names_to = "symptom_cluster",
+    values_to = "post_injury_1_score",
+    names_pattern = "(.*)_score_post_injury_1"
+  )
+```
+
+```{r, include=TRUE}
+scaled_cluster_gender_tbl(four_clusters_test_1,
+                          gender,
+                          symptom_cluster,
+                          post_injury_1_score)
+```
+
+
+### Four Tests Non-Normalized Test 2 Summary 
+
+```{r, include=FALSE}
+four_clusters_test_2 <- clusters_four_impact_test_2 %>% 
+  pivot_longer(
+    cols = c(21:26),
+    names_to = "symptom_cluster",
+    values_to = "post_injury_2_score",
+    names_pattern = "(.*)_score_post_injury_2"
+  )
+```
+
+```{r, include=TRUE}
+scaled_cluster_gender_tbl(four_clusters_test_2,
+                          gender,
+                          symptom_cluster,
+                          post_injury_2_score)
+```
+
+### Four Tests Non-Normalized Test 3 Summary 
+
+```{r, include=FALSE}
+four_clusters_test_3 <- clusters_four_impact_test_3 %>% 
+  pivot_longer(
+    cols = c(21:26),
+    names_to = "symptom_cluster",
+    values_to = "post_injury_3_score",
+    names_pattern = "(.*)_score_post_injury_3"
+  )
+```
+
+```{r, include=TRUE}
+scaled_cluster_gender_tbl(four_clusters_test_3,
+                          gender,
+                          symptom_cluster,
+                          post_injury_3_score)
+```
+
+### Four Tests Non-Normalized Test 4 Summary 
+
+```{r, include=FALSE}
+four_clusters_test_4 <- clusters_four_impact_test_4 %>% 
+  pivot_longer(
+    cols = c(21:26),
+    names_to = "symptom_cluster",
+    values_to = "post_injury_4_score",
+    names_pattern = "(.*)_score_post_injury_4"
+  )
+```
+
+```{r, include=TRUE}
+scaled_cluster_gender_tbl(four_clusters_test_4,
+                          gender,
+                          symptom_cluster,
+                          post_injury_4_score)
 ```
