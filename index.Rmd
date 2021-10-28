@@ -138,6 +138,96 @@ pcss_cluster <- import(here("data", "cluster_scores.xlsx"),
 
 ```
 
+```{r, include=FALSE}
+head(one_impact_test)
+
+one_count <- one_impact_test %>% 
+  group_by(row, passport_id, gender, age)
+
+one_impact_test %>% 
+  count(passport_id)
+
+one_impact_test %>% 
+  group_by(gender) %>% 
+  summarize(mean(age))
+
+head(two_impact_test)
+  
+two_impact_test %>% 
+  group_by(gender) %>% 
+  summarize(mean(age_post_injury_1))
+
+three_impact_test %>% 
+  group_by(gender) %>% 
+  summarize(mean(age_post_injury_1))
+
+four_impact_test %>% 
+  group_by(gender) %>% 
+  summarize(mean(age_post_injury_1))
+
+one_impact_test %>% 
+  group_by(row, gender) %>% 
+  count()
+
+3400 + 4995
+
+one_impact_test %>% 
+  count(row)
+
+length(unique(one_impact_test$passport_id))
+
+two_impact_test %>% 
+  group_by(row, gender) %>% 
+  count()
+
+2040 + 2872
+
+length(unique(two_impact_test$passport_id))
+
+three_impact_test %>% 
+  count(passport_id)
+
+three_impact_test %>% 
+  group_by(row, gender) %>% 
+  count()
+
+884 + 1254
+
+length(unique(three_impact_test$passport_id))
+
+four_impact_test %>% 
+  count(passport_id)
+
+four_impact_test %>% 
+  group_by(row, gender) %>% 
+  count()
+
+313 + 454
+
+9991 + 5295 + 2228 + 780
+
+length(unique(four_impact_test$passport_id))
+
+four_test_count <- length(unique(four_impact_test$passport_id))
+
+3400 + 579 + 100 + 11 + 4 + 2
+
+4995 + 742 + 125 + 25 + 5 + 2 + 1
+
+3400 + 4995
+579 + 742
+125 + 100
+8395 + 1321 + 225 + 36 + 9 + 4 + 1
+
+2040 + 2872
+152+200
+
+884 + 1254
+
+2138 + 89 + 1
+313 + 454
+```
+
 # Symptom Comparisons
 
 Sidebar {.sidebar}
@@ -1820,11 +1910,49 @@ scaled_cluster_gender_tbl <- function(df, a, b, c) {
     )    
 }
 
+
+scaled_cluster_age_tbl <- function(df, a, b, c) {
+  df %>% 
+    group_by({{a}}, {{b}}) %>% 
+    summarize(Mean = mean({{c}}),
+              SD = sd({{c}}),
+              Min = min({{c}}),
+              Max = max({{c}})) %>%  
+    mutate(Mean = as.numeric(Mean),
+           SD = as.numeric(SD),
+           Min = as.numeric(Min),
+           Max = as.numeric(Max)) %>% 
+    arrange(desc(Mean)) %>% 
+    mutate_if(is.numeric, round, 2) %>% 
+    reactable(
+      defaultColDef = colDef(align = "center"),
+      columns = list(
+        age = colDef(name = "Age"),
+        symptom_cluster = colDef(name = "Symptom Cluster"),
+        Mean = colDef(format = colFormat(separators = TRUE)),
+        SD = colDef(format = colFormat(separators = TRUE)),
+        Min = colDef(format = colFormat(separators = TRUE)),
+        Max = colDef(format = colFormat(separators = TRUE))
+      ),
+      pagination = TRUE,
+      striped = TRUE,
+      outlined = TRUE,
+      compact = TRUE,
+      highlight = TRUE,
+      bordered = TRUE,
+      searchable = TRUE
+    )    
+}
+
 scaled_cluster_gender_tbl(clusters_one_impact_test_scaled_long,
                           gender,
                           symptom_cluster,
                           post_injury_1_score)
 
+scaled_cluster_age_tbl(clusters_one_impact_test_scaled_long,
+                          age,
+                          symptom_cluster,
+                          post_injury_1_score)
 ```
 
 ```{r, include=TRUE}
@@ -1946,6 +2074,33 @@ pwc_react <- function(df) {
     )  
 }
 
+## Two way anova with age added:
+
+cluster_one_test_aov3 <- aov(post_injury_1_score ~ symptom_cluster * gender * age, 
+                            data = clusters_one_impact_test_scaled_long)
+
+summary(cluster_one_test_aov3)
+
+cluster_one_test_aov3
+
+Anova(cluster_one_test_aov3, type = "III")
+
+TukeyHSD(cluster_one_test_aov3)
+TukeyHSD(cluster_one_test_aov3, which = "gender")
+TukeyHSD(cluster_one_test_aov3, which = "symptom_cluster")
+TukeyHSD(cluster_one_test_aov3, which = "age")
+
+
+res_1a <- TukeyHSD(cluster_one_test_aov3)
+
+tidy(res_1a) %>% 
+  reactable()
+
+a_1a <- Anova(cluster_one_test_aov3, type = "III")
+
+summary(a_1a)
+
+reactable(a_1a)
 ```
 
 ```{r, include=TRUE}
